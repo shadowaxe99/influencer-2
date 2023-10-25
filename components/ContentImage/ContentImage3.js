@@ -31,6 +31,7 @@ export const ContentImage3 = () => {
     const videoRefs = useRef([]); // Ref for video elements
     const [initialLoad, setInitialLoad] = useState(true); // State to check if it's the initial load
     const activeTabIndexRef = useRef(ContentImageData[1].index);
+    const [played, setPlayed] = useState(false);
 
     useEffect(() => {
         activeTabIndexRef.current = activeTab.index;
@@ -71,9 +72,17 @@ export const ContentImage3 = () => {
                         index === activeTabIndexRef.current
                     ) {
                         playOrPauseVideo(index, "play");
+                        setPlayed(true);
                         console.log("playing video", index);
                     } else {
                         playOrPauseVideo(index, "pause");
+                    }
+                    if(
+                        videoTop < scrollY
+                    ){
+                        playOrPauseVideo(index, "pause");
+                        console.log("pausing video", index);
+                        window.removeEventListener("scroll", handleScroll);
                     }
                 }
             });

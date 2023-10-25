@@ -18,6 +18,7 @@ const AudioPlayer = () => {
                 if (entry.isIntersecting) {
                     setIsPlaying(true);
                     audioRef.current.play();
+                    audioRef.current.volume = 0.2;
                 } else {
                     audioRef.current.pause();
                     setIsPlaying(false);
