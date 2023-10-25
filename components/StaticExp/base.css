@@ -1,0 +1,49 @@
+body{
+  background-color: transparent;
+  color: white;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+height: 150px;
+width: 150px;
+background-color: red;
+}
+
+@keyframes blink {
+0% {background-color: red;}
+50% {background-color: #ff3333;}
+100% {background-color: red;}
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+0% {opacity: 1;}
+50% {opacity: 0.1;}
+100% {opacity: 1;}
+}
+
+.blink {
+animation: blink 1s linear infinite;
+}
+
+.larger {
+font-size: 250%;
+}
+
+#mute-btn {
+border-radius: 50%;
+width: 50px;
+height: 50px;
+font-size: 20px;
+line-height: 20px;
+text-align: center;
+padding: 15px;
+background-color: #007bff;
+border-color: #007bff;
+color: white;
+}

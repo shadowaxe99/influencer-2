@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toal Amount Required</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .price {
+            font-size: 24px;
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        .selected {
+            background-color: #28a745; /* Green color when selected */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Price Calculator</h1>
+        <p class="price" id="price">$500,000</p>
+        <button class="button" id="button1" onclick="handleButtonClick('button1')">Agent 1</button>
+        <button class="button" id="button2" onclick="handleButtonClick('button2')">Agent 2</button>
+        <button class="button" id="button3" onclick="handleButtonClick('button3')">Agent 3</button>
+    </div>
+
+    <script>
+        let price = 500000;
+        let targetPrice = price;
+        let animationInterval = null;
+
+        // Function to update the price display
+        function updatePrice() {
+            const priceElement = document.getElementById('price');
+            priceElement.textContent = `$${price.toLocaleString()}`;
+        }
+
+        // Function to handle button clicks
+        function handleButtonClick(buttonId) {
+            const button = document.getElementById(buttonId);
+            if (button.classList.contains('selected')) {
+                button.classList.remove('selected');
+                targetPrice += 150000;
+            } else {
+                button.classList.add('selected');
+                targetPrice -= 150000;
+            }
+            
+            clearInterval(animationInterval);
+            animationInterval = setInterval(function() {
+                if (price < targetPrice) {
+                    price += 1000;
+                    updatePrice();
+                } else if (price > targetPrice) {
+                    price -= 1000;
+                    updatePrice();
+                } else {
+                    clearInterval(animationInterval);
+                }
+            }, 10);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+.process-item--image {
+    position: relative; // Make sure this is set for pseudo-elements
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.8),
+            transparent
+        );
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    &:hover {
+        &::before {
+            opacity: 1;
+        }
+
+        img {
+            // target the image on hover
+            transform: scale(1.05);
+        }
+    }
+
+    img {
+        transition: transform 0.3s ease-in-out;
+    }
+}

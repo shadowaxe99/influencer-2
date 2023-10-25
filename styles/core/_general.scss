@@ -1,0 +1,67 @@
+/**
+
+=========================================================
+** Custom General styling
+=========================================================
+
+**/
+
+html {
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+body {
+    font-family: $body-font;
+    letter-spacing: rem(-0.5);
+}
+
+.main {
+    // @apply grid gap-8 sm:gap-16;
+}
+
+#gradient-canvas {
+    width: 100%;
+    height: 100%;
+    --gradient-color-1: #c3e4ff;
+    --gradient-color-2: #6ec3f4;
+    --gradient-color-3: #eae2ff;
+    --gradient-color-4: #b9beff;
+}
+
+.content {
+    &.text-xl {
+        p {
+            @apply leading-7;
+        }
+    }
+}
+
+// .process-item--image::before {
+//     content: "";
+//     position: absolute;
+//     top: -10px;
+//     left: -10px;
+//     right: -10px;
+//     bottom: -10px;
+//     background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+//     z-index: -1;
+//     opacity: 0;
+//     transition: opacity 0.3s ease-in-out;
+// }
+
+// .process-item--image:hover::before {
+//     opacity: 1;
+// }
+
+// .process-item--image img {
+//     transition: transform 0.3s ease-in-out;
+// }
+
+// .process-item--image:hover img {
+//     transform: scale(1.05); // Scales the image by 5% when hovered
+// }
