@@ -2655,6 +2655,7 @@ iframe {
 .elysium-object-glow {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     animation: pulse 1.2s infinite alternate;
+    z-index: 999;
 }
 
 /* Intensified glow and zoom on hover */

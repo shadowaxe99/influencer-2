@@ -16,12 +16,18 @@ module.exports = {
                 title: ["Inter", "Sans Serif"],
                 dune: ["var(--font-dune)"],
                 startrek: ["var(--font-startrek)"],
-                runescape: ["var(--font-runscape-plain)"],
+                runescape: ["var(--font-runscape)"],
                 ancient: ["var(--font-ancient)"],
                 bubble: ["var(--font-bubble-power)"],
                 villain: ["var(--font-villain)"],
                 agent: ["var(--font-agent)"],
-                pope: ["var(--font-pope)"]
+                pope: ["var(--font-pope)"],
+                avengers: ["var(--font-avengers)"],
+                galaxy: ["var(--font-spock-galaxy)"],
+                despicable: ["var(--font-despicable-me)"],
+                popeMedici: ["var(--font-pope-medici)"],
+                spongebob: ["var(--font-spongebob)"],
+                batman: ["var(--font-batman)"]
             },
             fontSize: {
                 body: [

@@ -46,7 +46,7 @@ export default function ElysiumLanding({ handleEnterInteractiveClick, handleEnte
               imagePath={circle.imagePath}
             />
           ))}
-          <Image src="/elysium-logo-new.png" width={200} height={200} className="z-50 shadow-lg" />
+          <Image src="/elysium-logo-white.png" width={200} height={200} className="z-50 shadow-lg rounded-full" />
           <div className="absolute top-1/4 space-y-4 z-50">
             <Button onClick={() => {
                 setEnterClicked(true);

@@ -926,10 +926,16 @@ export default function Home() {
                             <CardGroup className="grid scroll-m-24 gap-8 grid-cols-1 max-w-4xl mx-auto mt-24 md:grid-cols-2">
                                 <Card className="col-span-1 text-primary-900">
                                     <CardBody className="w-full bg-white-600/20 p-12">
-                                        <CardImage
+                                        {/* <CardImage
                                             src="/ironman.jpeg"
                                             alt="Customizable Layouts image used."
-                                        />
+                                        /> */}
+                                        <video
+                                            autoPlay
+                                            loop
+                                            muted
+                                            src="/ironman-video.mp4"
+                                        ></video>
                                         <CardHeader className="!text-black !text-2xl !font-bold">
                                             Elysium OS on Web & Desktop
                                         </CardHeader>
@@ -940,10 +946,16 @@ export default function Home() {
                                 </Card>
                                 <Card className="col-span-1 text-primary-900">
                                     <CardBody className="w-full bg-white-600/20 p-12">
-                                        <CardImage
+                                        {/* <CardImage
                                             src="/build-project.jpeg"
                                             alt="Progress Tracking image used."
-                                        />
+                                        /> */}
+                                        <video
+                                            autoPlay
+                                            loop
+                                            muted
+                                            src="/build-project-video.mp4"
+                                        ></video>
                                         <CardHeader className="!text-black !text-2xl !font-bold">
                                             Automation Station
                                         </CardHeader>

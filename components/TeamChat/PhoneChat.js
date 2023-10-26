@@ -288,7 +288,7 @@ const ChatPage = () => {
                 </ul>
                 {/* Chat Screen */}
                 <div
-                    className={`absolute top-0 bottom-0 w-full bg-white transition-all duration-500 ${
+                    className={`absolute top-0 bottom-0 bg-white w-full transition-all duration-500 ${
                         selectedContact ? "left-0" : "left-full"
                     }`}
                 >

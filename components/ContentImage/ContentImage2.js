@@ -12,7 +12,8 @@ const ContentImageData = [
         content:
             "<strong>They need a Boss/Conductor!</strong><br>Isolated AI agents are good at specific tasks but can't handle everything on their own. In today's digital realm, standalone AI agents excel in singular tasks. However, the magic unfolds when they synergize for complex endeavors.",
         align: "right", //html in text is iffy for security but whatevs
-        image: "/mingle.png"
+        image: "/mingle.png",
+        video: "/mingle-video.mp4"
     }
     // {
     //     id: uuid(),
@@ -102,7 +103,7 @@ export const ContentImage2 = ({ shouldPlayWaves }) => {
                                 item.align === "left" ? "md:order-1" : ""
                             }`}
                         >
-                            <Image
+                            {/* <Image
                                 src={item.image}
                                 width={512}
                                 height={512}
@@ -113,6 +114,21 @@ export const ContentImage2 = ({ shouldPlayWaves }) => {
                                 style={transformStyle(item.align, item.id)}
                                 onMouseEnter={() => setHoveredId(item.id)}
                                 onMouseLeave={() => setHoveredId(null)}
+                            /> */}
+                            <video
+                                src={item.video}
+                                width={512}
+                                height={512}
+                                draggable={false}
+                                objectFit="cover"
+                                alt="Process Banner 1"
+                                className="drop-shadow-xl w-full offset-y-0 offset-x-8 blur-16 border-4 border-blue-500 rounded glow-image float-image"
+                                style={transformStyle(item.align, item.id)}
+                                onMouseEnter={() => setHoveredId(item.id)}
+                                onMouseLeave={() => setHoveredId(null)}
+                                muted
+                                loop
+                                autoPlay
                             />
                         </div>
                         <div

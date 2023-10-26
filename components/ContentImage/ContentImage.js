@@ -14,6 +14,7 @@ const ContentImageData = [
         content: `Step into a world where your personal AI "Butler" deftly manages an ecosystem of AI agents, ensuring tasks are executed with unparalleled precision.`,
         align: "right",
         image: "/elysium-logo-1.jpeg",
+        video: "/elysium-os-video.mp4",
         flipIconPosition: { top: "4px", right: "5px" }, // new property
         moreInfo: `Elysium OS comes in the form of a personal AI "Butler" assistant, with the ability to delegate tasks for you to our ecosystem of AI agents.`,
         learnMoreHeader: "Learn more 🤔"
@@ -24,6 +25,7 @@ const ContentImageData = [
         // content: "",
         align: "left",
         image: "/head.jpeg",
+        video: "/guide-video.mp4",
         flipIconPosition: { top: "4px", left: "5px" }, // new property
         learnMoreHeader: "Dive deeper💡",
 
@@ -161,7 +163,7 @@ export const ContentImage = () => {
                                         />
                                         {/* </div> */}
 
-                                        <Image
+                                        {/* <Image
                                             src={item.image}
                                             width={512}
                                             height={512}
@@ -182,6 +184,31 @@ export const ContentImage = () => {
                                             onClick={() =>
                                                 setFlippedId(item.id)
                                             }
+                                        /> */}
+                                        <video
+                                            src={item.video}
+                                            width={512}
+                                            height={512}
+                                            draggable={false}
+                                            objectFit="cover"
+                                            alt="Process Banner 1"
+                                            className="drop-shadow-xl w-full offset-y-0 offset-x-8 blur-16 border-4 border-blue-500 rounded glow-image float-image"
+                                            style={transformStyle(
+                                                item.align,
+                                                item.id
+                                            )}
+                                            onMouseEnter={() =>
+                                                setHoveredId(item.id)
+                                            }
+                                            onMouseLeave={() =>
+                                                setHoveredId(null)
+                                            }
+                                            onClick={() =>
+                                                setFlippedId(item.id)
+                                            }
+                                            loop
+                                            muted
+                                            autoPlay
                                         />
                                     </div>
                                     <div className="flip-card-back p-8">

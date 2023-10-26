@@ -9,7 +9,8 @@ import {
     villain,
     bubbleFont,
     starTrekFont,
-    popeFont
+    popeFont,
+    avengersFont
 } from "@fonts/fonts";
 const ChatBubble = ({ inputText }) => {
     const [currentText, setCurrentText] = useState("");
@@ -149,9 +150,14 @@ const ChatBubble = ({ inputText }) => {
                 setFontFamily("font-mono");
                 setFontVariable(duneFont.variable);
                 break;
+            // case "2":
+            //     setFontFamily("font-agent");
+            //     setFontVariable(agentFont.variable);
+            //     setLetterSpacing("tracking-wider");
+            //     break;
             case "2":
-                setFontFamily("font-agent");
-                setFontVariable(agentFont.variable);
+                setFontFamily("font-avengers");
+                setFontVariable(avengersFont.variable);
                 setLetterSpacing("tracking-wider");
                 break;
             case "3":

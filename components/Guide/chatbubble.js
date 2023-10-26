@@ -9,7 +9,14 @@ import {
     villain,
     bubbleFont,
     starTrekFont,
-    popeFont
+    popeFont,
+    avengersFont,
+    spockGalaxy,
+    runescapeFont,
+    popeMediciFont,
+    spongebobFont,
+    despicableFont,
+    batmanFont
 } from "@fonts/fonts";
 const ChatBubble = ({ inputText }) => {
     const [currentText, setCurrentText] = useState("");
@@ -141,50 +148,107 @@ const ChatBubble = ({ inputText }) => {
                 console.log("charceter id === 0");
                 setFontFamily("font-runescape");
                 setFontVariable(runescapePlain.variable);
-                setTextSize("text-2xl");
-                setLetterSpacing("tracking-wider");
+                setTextSize("text-xl");
+                setLetterSpacing("tracking-wide");
+                break;
+            // case "0":
+            //     console.log("charceter id === 0");
+            //     setFontFamily("font-runescape-new");
+            //     setFontVariable(runescapeFont.variable);
+            //     setTextSize("text-2xl");
+            //     setLetterSpacing("tracking-wider");
+            //     break;
 
-                break;
+                
+            // case "1":
+            //     setFontFamily("font-mono");
+            //     setFontVariable(duneFont.variable);
+            //     break;
             case "1":
-                setFontFamily("font-mono");
-                setFontVariable(duneFont.variable);
+                setFontFamily("font-batman");
+                setFontVariable(batmanFont.variable);
+                setLetterSpacing("tracking-wide");
+                setTextSize("text-xl");
                 break;
+
+
+            // case "2":
+            //     setFontFamily("font-agent");
+            //     setFontVariable(agentFont.variable);
+            //     setLetterSpacing("tracking-wider");
+            //     break;
             case "2":
-                setFontFamily("font-agent");
-                setFontVariable(agentFont.variable);
+                setFontFamily("font-avengers");
+                setFontVariable(avengersFont.variable);
                 setLetterSpacing("tracking-wider");
+                setTextSize("text-3xl");
                 break;
+
+
             case "3":
                 setFontFamily("font-startrek");
                 setFontVariable(starTrekFont.variable);
-                setTextColor("text-blue-700");
-                setBgColor("bg-gray-400");
-                setTextSize("text-2xl");
+                // setTextColor("text-blue-700");
+                // setBgColor("bg-gray-400");
+                setTextSize("text-3xl");
+                setLetterSpacing("tracking-widest");
                 break;
+            // case "3":
+            //     setFontFamily("font-spock-galaxy");
+            //     setFontVariable(spockGalaxy.variable);
+            //     // setTextColor("text-blue-700");
+            //     setBgColor("bg-gray-400");
+            //     setTextSize("text-3xl");
+            //     break;
+
+
             case "4":
                 setFontFamily("font-ancient");
                 setFontVariable(ancient.variable);
                 setTextSize("text-2xl");
                 setLetterSpacing("tracking-wider");
+                break;
 
-                break;
+
+            // case "5":
+            //     setFontFamily("font-bubble");
+            //     setFontVariable(bubbleFont.variable);
+            //     setTextSize("text-2xl");
+            //      break;
             case "5":
-                setFontFamily("font-bubble");
-                setFontVariable(bubbleFont.variable);
-                setTextSize("text-2xl");
-                break;
-            case "6":
-                setFontFamily("font-pope");
-                setFontVariable(popeFont.variable);
-                setTextSize("text-xl");
-                setLetterSpacing("tracking-wider");
-                break;
-            case "7":
-                setFontFamily("font-villain");
-                setFontVariable(villain.variable);
+                setFontFamily("font-spongebob");
+                setFontVariable(spongebobFont.variable);
                 setTextSize("text-2xl");
                 setLetterSpacing("tracking-widest");
                 break;
+
+
+            case "6":
+                setFontFamily("font-pope");
+                setFontVariable(popeFont.variable);
+                setTextSize("text-3xl");
+                setLetterSpacing("tracking-wide");
+                break;
+            // case "6":
+            //     setFontFamily("font-pope-medici");
+            //     setFontVariable(popeMediciFont.variable);
+            //     setTextSize("text-xl");
+            //     setLetterSpacing("tracking-wider");
+            //     break;
+
+
+            case "7":
+                setFontFamily("font-villain");
+                setFontVariable(villain.variable);
+                setTextSize("text-3xl");
+                setLetterSpacing("tracking-wide");
+                break;
+            // case "7":
+            //     setFontFamily("font-despicable-me");
+            //     setFontVariable(despicableFont.variable);
+            //     setTextSize("text-xl");
+            //     setLetterSpacing("tracking-widest");
+            //     break;
         }
     };
     useEffect(() => {
