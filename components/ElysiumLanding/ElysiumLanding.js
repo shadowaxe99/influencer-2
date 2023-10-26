@@ -82,6 +82,7 @@ export default function ElysiumLanding({ handleEnterInteractiveClick, handleEnte
                 src={imagePath} 
                 objectFit="cover" 
                 layout="fill" 
+                priority
                 // loading="lazy"
                 />
           </div>
