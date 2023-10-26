@@ -46,7 +46,6 @@ export const Footer = () => {
                                         width="100"
                                         draggable={false}
                                         priority
-                                        loading="lazy"
                                     />
                                 </Link>
                                 {/* Get Template button; remove if not used */}
@@ -111,6 +110,18 @@ export const Footer = () => {
                 </div>
             </SectionContainer>
             <div className="footer--background"></div>
+            <video
+                className="absolute bottom-0 right-0 z-0 object-cover"
+                src="/israel-usa-video.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                height={350}
+                width={350}
+            >
+                Your browser does not support the video tag.
+            </video>
         </footer>
     );
 };

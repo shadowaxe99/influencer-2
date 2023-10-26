@@ -1,4 +1,14 @@
 import { create } from "zustand";
+import {
+    runescapePlain,
+    batmanFont,
+    avengersFont,
+    starTrekFont,
+    ancient,
+    spongebobFont,
+    popeFont,
+    villain,
+} from "@fonts/fonts";
 
 const useCharacterStore = create((set) => ({
     characters: [
@@ -47,6 +57,9 @@ const useCharacterStore = create((set) => ({
                 "So, young adventurer, are you prepared to embark on the most wondrous journey of your life? Elysium Innovations awaits!",
                 "© 2023 Elysium Innovations. All rights reserved. No goblins were harmed in the forging of this platform."
             ],
+            fontFamily: "font-runescape",
+            fontVariable: runescapePlain.variable,
+            letterSpacing: "tracking-wide",
         },
         {
             id: "1",
@@ -93,6 +106,9 @@ const useCharacterStore = create((set) => ({
                 "So, shall we proceed? Elysium Innovations is ready to serve you, just as I serve the Wayne family.",
                 "© 2023 Elysium Innovations. All rights reserved. No supervillains were harmed in the making of this platform."
             ],
+            fontFamily: "font-batman",
+            fontVariable: batmanFont.variable,
+            letterSpacing: "tracking-wides",
         },
         {
             id: "2",
@@ -140,6 +156,9 @@ const useCharacterStore = create((set) => ({
                 "So, Agent, are you in or out? Elysium Innovations is assembling a team, and you're on the list.",
                 "© 2023 Elysium Innovations. All rights reserved. No Skrulls were harmed in the making of this platform."
             ],
+            fontFamily: "font-avengers",
+            fontVariable: avengersFont.variable,
+            letterSpacing: "tracking-wider",
         },
         {
             id: "3",
@@ -186,6 +205,9 @@ const useCharacterStore = create((set) => ({
                 "Are you prepared to join us on this logical journey? Elysium Innovations stands as a paragon of technological advancement, and your participation would be most logical.",
                 "© 2023 Elysium Innovations. All rights reserved. No redshirts were harmed in the making of this platform."
             ],
+            fontFamily: "font-startrek",
+            fontVariable: starTrekFont.variable,
+            letterSpacing: "tracking-widest",
         },
         {
             id: "4",
@@ -232,6 +254,9 @@ const useCharacterStore = create((set) => ({
                 "So, are you ready to join our community? Elysium Innovations is like a warm, welcoming Sukkah, and there's always room for one more.",
                 "© 2023 Elysium Innovations. All rights reserved. No dreidels were spun in the making of this platform."
             ],
+            fontFamily: "font-ancient",
+            fontVariable: ancient.variable,
+            letterSpacing: "tracking-wider",
         },
         {
             id: "5",
@@ -279,6 +304,9 @@ const useCharacterStore = create((set) => ({
                 "So, are you ready, kids? Dive into the Elysium Innovations experience and make your digital life as fun as a day in Bikini Bottom!",
                 "© 2023 Elysium Innovations. All rights reserved."
             ],
+            fontFamily: "font-spongebob",
+            fontVariable: spongebobFont.variable,
+            letterSpacing: "tracking-widest",
         },
         {
             id: "6",
@@ -325,6 +353,9 @@ const useCharacterStore = create((set) => ({
                 "So, are you ready to join our mission? Elysium Innovations is like a cathedral of technology, and its doors are open to all.",
                 "© 2023 Elysium Innovations. All rights reserved. No rosaries were counted in the making of this platform."
             ],
+            fontFamily: "font-pope",
+            fontVariable: popeFont.variable,
+            letterSpacing: "tracking-wide",
         },
         {
             id: "7",
@@ -371,6 +402,9 @@ const useCharacterStore = create((set) => ({
                 "So, are you in or are you out? Elysium Innovations is assembling a team, and you look like you could handle a freeze ray!",
                 "© 2023 Elysium Innovations. All rights reserved. No Minions were harmed in the making of this platform."
             ],
+            fontFamily: "font-villain",
+            fontVariable: villain.variable,
+            letterSpacing: "tracking-wide",
         }
     ],
     selectedCharacter: null,

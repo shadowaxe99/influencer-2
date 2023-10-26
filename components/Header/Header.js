@@ -12,7 +12,7 @@ export const Header = ({toggleSidebar}) => {
             className="header fixed left-0 w-full z-30 top-0 bg-white backdrop-filter backdrop-blur-md bg-opacity-50"
         >
             <SectionContainer className="header--container wrap wrap-px ">
-                <div className="header-logo--container">
+                {/* <div className="header-logo--container">
                     <h1 className="logo mb-0">
                         <Link href="/">
                             <Image
@@ -23,11 +23,10 @@ export const Header = ({toggleSidebar}) => {
                                 width="100"
                                 priority
                                 draggable={false}
-                                loading="lazy"
                             />
                         </Link>
                     </h1>
-                </div>
+                </div> */}
                 <SectionContainer className="flex items-center ml-auto">
                     <Nav toggleSidebar={toggleSidebar}/>
                     {/* <ButtonGroup className="hidden md:block">

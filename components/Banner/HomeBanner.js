@@ -67,7 +67,6 @@ export const HomeBanner = () => {
                                 priority
                                 draggable={false}
                                 className="rounded-full elysium-object-glow"
-                                loading="lazy"
                             />
                         </div>
                         <Content className="text-center " alignment="center">
