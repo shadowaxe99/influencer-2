@@ -48,6 +48,11 @@
     display: block;
     position: absolute;
 }
+
+.checkbox-mute {
+    z-index: 1000;
+}
+
 .topRightImage {
     position: absolute;
     object-fit: fill;
@@ -3086,3 +3091,7 @@ iframe {
         transform: translateX(-100%);
     }
 }
+
+//PHONECHAT STYLES
+
+

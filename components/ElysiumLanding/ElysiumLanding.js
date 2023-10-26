@@ -13,118 +13,77 @@ const imagePaths = [
     "/ironman.jpeg",
     "/elysium-logo-2.png"
 ];
+const circleData = [
+    { speed: "16s", distance: 186, imagePath: "/head.jpeg" },
+    { speed: "20s", distance: 240, imagePath: "/mingle.png" },
+    { speed: "24s", distance: 300, imagePath: "/pnedant.jpeg" },
+    { speed: "28s", distance: 360, imagePath: "/temple.jpeg" },
+    { speed: "32s", distance: 420, imagePath: "/ironman.jpeg" },
+    { speed: "34s", distance: 460, imagePath: "/elysium-logo-2.png" },
+  ];
 export default function ElysiumLanding({ handleEnterInteractiveClick, handleEnterStaticClick }) {
     const [isMobile, setIsMobile] = useState(false);
     const [enterClicked, setEnterClicked] = useState(false);
-    const router = useRouter();
-    const colors = ["red", "blue", "gray", "yellow", "purple", "green"];
     useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(
-                /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
-                    navigator.userAgent
-                )
-            );
-        };
-        window.addEventListener("resize", checkMobile);
-        checkMobile();
-        return () => window.removeEventListener("resize", checkMobile);
+      const checkMobile = () => setIsMobile(window.innerWidth <= 640);
+      window.addEventListener("resize", checkMobile);
+      checkMobile();
+      return () => window.removeEventListener("resize", checkMobile);
     }, []);
-
     return (
-        <Transition
-            show={true}
-            enter="transition-opacity duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-        >
-            <div className="bg-gradient-to-b from-black to-gray-900 h-screen overflow-y-hidden flex flex-col justify-center items-center relative">
-                {!isMobile &&
-                    distances.map((distance, i) => (
-                        <div
-                            key={i}
-                            style={{
-                                width: `${distance * 2}px`,
-                                height: `${distance * 2}px`,
-                                border: "2px solid white",
-                                borderRadius: "50%",
-                                position: "absolute",
-                                opacity: 0.5,
-                                zIndex: 800
-                            }}
-                        ></div>
-                    ))}
-                {colors.map((color, i) => (
-                    <RotatingCircle
-                        key={i}
-                        bgColor={color}
-                        speed={enterClicked ? "1s" : rotationDurations[i]}
-                        distance={distances[i]}
-                        imagePath={imagePaths[i]}
-                        initialDegree={(360 / colors.length) * i}
-                    />
-                ))}
-                <Image
-                    src="/elysium-logo-new.png"
-                    width={200}
-                    height={200}
-                    className="absolute rounded-full elysium-object-glow z-50"
-                />
-                <button
-                    onClick={() => {
-                        setEnterClicked(true);
-                        handleEnterInteractiveClick();
-                    }}
-                    className="bg-yellow-500 text-black px-4 py-2 absolute top-64 w-90 transition-all hover:scale-110 hover:bg-yellow-400 border-2 border-white"
-                >
-                    Enter Interactive Experience
-                </button>
-                <button
-                    onClick={() => {
-                        setEnterClicked(true);
-                        handleEnterStaticClick();
-                    }}
-                    className="bg-yellow-500 text-black px-4 py-2 absolute bottom-64 w-90 transition-all hover:scale-110 hover:bg-yellow-400 border-2 border-white"
-                >
-                    Enter Static Experience
-                </button>
-            </div>
-            <ParticlesBackground />
-        </Transition>
-    );
-}
-function RotatingCircle({
-    speed,
-    bgColor,
-    distance,
-    imagePath,
-    initialDegree
-}) {
-    return (
-        <div
-            className="circle-container relative rounded-lg"
-            style={{ animation: `rotate ${speed} infinite linear` }}
-        >
-            <RotatingItem
-                bgColor={bgColor}
-                distance={distance}
-                imagePath={imagePath}
-                initialDegree={initialDegree}
+      <Transition
+        show={true}
+        enter="transition-opacity duration-300"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+      >
+        <div className="bg-gradient-to-b from-black to-gray-900 h-screen flex flex-col justify-center items-center relative">
+          {circleData.map((circle, i) => (
+            <RotatingCircle
+              key={i}
+              speed={enterClicked ? "1s" : circle.speed}
+              distance={circle.distance}
+              imagePath={circle.imagePath}
             />
+          ))}
+          <Image src="/elysium-logo-new.png" width={200} height={200} className="z-50 shadow-lg" />
+          <div className="absolute top-1/4 space-y-4 z-50">
+            <Button onClick={() => {
+                setEnterClicked(true);
+                handleEnterInteractiveClick();
+              }}>
+              Enter Interactive Experience
+            </Button>
+            <Button onClick={() => {
+                setEnterClicked(true);
+                handleEnterStaticClick();
+              }}>
+              Enter Static Experience
+            </Button>
+          </div>
+          <ParticlesBackground />
         </div>
+      </Transition>
     );
-}
-function RotatingItem({ bgColor, distance, imagePath, initialDegree }) {
+  }
+  function RotatingCircle({ speed, distance, imagePath }) {
     return (
-        <div
-            className="circle-item rounded-full"
-            style={{
-                transform: `rotate(${initialDegree}deg) translateX(${distance}px) rotate(-${initialDegree}deg)`
-            }}
-        >
-            <div className="relative w-12 h-12 border-2 border-gray-100 rounded-full overflow-hidden elysium-object-glow z-auto">
-                <Image src={imagePath} objectFit="cover" layout="fill" />
-            </div>
+      <div className="absolute animate-spin" style={{ animationDuration: speed }}>
+        <div style={{ transform: `translateX(${distance}px)` }}>
+          <div className="w-12 h-12 border-2 border-gray-100 rounded-full overflow-hidden shadow-lg">
+            <Image src={imagePath} objectFit="cover" layout="fill" />
+          </div>
         </div>
+      </div>
     );
-}
+  }
+  function Button({ children, onClick }) {
+    return (
+      <button
+        onClick={onClick}
+        className="bg-yellow-500 text-black px-4 py-2 w-90 hover:scale-105 hover:bg-yellow-400 border-2 border-white shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+      >
+        {children}
+      </button>
+    );
+  }

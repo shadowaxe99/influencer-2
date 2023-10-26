@@ -1,0 +1,12 @@
+
+.reaction-box {
+  display: flex;
+  justify-content: space-around;
+}
+
+.reaction-btn {
+  cursor: pointer;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+}

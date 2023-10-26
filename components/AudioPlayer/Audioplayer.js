@@ -22,9 +22,14 @@ const AudioPlayer = () => {
                 } else {
                     audioRef.current.pause();
                     setIsPlaying(false);
+        
+                    // Check if the radio has scrolled past the top of the viewport
+                    if (entry.boundingClientRect.top < 0) {
+                        observerRef.current.unobserve(entry.target);
+                    }
                 }
             });
-        }, observerOptions);
+        }, observerOptions);        
 
         const target = document.getElementById("radio-trigger"); // Replace 'targetElement' with your specific ID
         observerRef.current.observe(target);

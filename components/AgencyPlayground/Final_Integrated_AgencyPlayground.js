@@ -1,10 +1,18 @@
-// Import necessary packages and components
+
+import React, { useState, useEffect } from "react";
 import ScratchCard from "@components/ScratchCard/ScratchCard";
-import React, { useState, useEffect, useRef } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import ScoreDashboard from "@components/AgencyPlayground/Updated_ScoreDashboard"; 
+import SpecialEffects from "./Updated_SpecialEffects"; 
+import AgentProfile from "./AgentProfile";
 import BarChart from "./BarChart";
+import UserGuide from "./UserGuide";
 import Image from "next/image";
+import RadioPlayer from "./RadioPlayer";
+
+// Mockup data and other variables
+// ...
 
 const AgencyPlayground = () => {
     const agents = [
@@ -64,7 +72,10 @@ const AgencyPlayground = () => {
         const agent = agents.find((a) => a.id === agentId);
         setPendingDeduction((prevPending) => prevPending + agent.costReduction);
     };
-
+    const [score, setScore] = useState(0);
+    const [multiplier, setMultiplier] = useState(1);
+    
+    // ... Existing useEffects and functions
     const addTasksForAgent = (agentId) => {
         const agent = agents.find((a) => a.id === agentId);
         if (agent && agent.tasks) {
@@ -159,8 +170,27 @@ const AgencyPlayground = () => {
         };
     }, [aiCostDeducted]);
 
+    
+    useEffect(() => {
+        const completedTasks = tasks.filter(task => task.progress === 100).length;
+        setScore(prevScore => prevScore + (completedTasks * 10 * multiplier));
+    }, [tasks]);
+
+    useEffect(() => {
+        if (score >= 100) {
+            setMultiplier(2);
+        }
+    }, [score]);
+
     return (
         <DndProvider backend={HTML5Backend}>
+            <div className="intro-text">
+                <h1>Welcome to the Future of Influencer Marketing!</h1>
+                <p>Drag and drop our AI agents below to unlock the magic of automation and watch your savings skyrocket. Ready to play?</p>
+            </div>
+            <UserGuide />
+            <AgentProfile />
+            {/* ... Other existing JSX elements for main gameplay area */}
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
@@ -270,27 +300,12 @@ const AgencyPlayground = () => {
                         Traditional vs AI Onboarding Costs Comparison (Drag and
                         drop agents to see the difference)
                     </div>
-
-                    {/* Radio Player */}
-                    {/* <div
-                        className="col-span-1 border bg-blue-300 p-4  "
-                        style={{
-                            backgroundImage: "url('/ai-radio-bg.png')",
-                            backgroundSize: "100%",
-                            backgroundRepeat: "no-repeat"
-                        }}
-                    >
-                        <div className="w-3/4 h-3/4 mt-20 ml-16">
-                            <AudioPlayer />
-                        </div>
-                    </div>
-
-                    <div className="col-span-1 border bg-white p-4">
-                        Elysium Apps
-                    </div> */}
                 </div>
             </div>
-        </DndProvider>
+            <ScoreDashboard score={score} totalCost={totalCost} multiplier={multiplier} />
+            <SpecialEffects score={score} />
+            <RadioPlayer />
+        </DndProvider>  
     );
 };
 
@@ -307,8 +322,6 @@ const TaskProgress = ({ task }) => {
         </div>
     );
 };
-
-export default AgencyPlayground;
 
 const Agent = ({ agent, handleAgentClick, setDroppedAgent, droppedAgents }) => {
     const [{ isDragging }, drag] = useDrag({
@@ -427,3 +440,6 @@ const AgentAnimation = ({ agent, path }) => {
         </div>
     );
 };
+
+
+export default AgencyPlayground;

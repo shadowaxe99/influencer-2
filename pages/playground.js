@@ -44,7 +44,8 @@ import ChatPage from "@components/TeamChat/PhoneChat";
 import { config } from "dotenv";
 import { motion, useAnimation } from "framer-motion";
 import { AgencyExample } from "@components/ContentImage/AgencyExample";
-import AgencyPlayground from "@components/AgencyPlayground/AgencyPlayground";
+// import AgencyPlayground from "@components/AgencyPlayground/AgencyPlayground";
+import AgencyPlayground from "@components/AgencyPlayground/Final_Integrated_AgencyPlayground";
 import { Chart } from "chart.js";
 import { CategoryScale, LinearScale } from "chart.js/auto";
 import { v4 as uuid } from "uuid";
@@ -542,6 +543,11 @@ export default function Home() {
         }
     };
 
+    const handleUnlock = () => {
+        setContainerVisible(true);
+        setIsUnlocked(true);
+    };
+
     const handleGoBack = () => {
         setContainerVisible(false);
         setIsUnlocked(false);
@@ -655,129 +661,84 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <div
-                className={`fixed top-10 z-50 left-2 p-4 ${
-                    isButlerDismissed ? "" : "hidden"
-                }`}
-            >
+            <div>
+            <div className={`fixed top-10 z-50 left-2 p-4 ${isButlerDismissed ? "" : "hidden"}`}>
                 <button
-                    className="bg-green-500 text-white rounded p-2 shadow-md "
-                    onClick={handleButlerSummoned}
-                >
+                    className="bg-green-500 text-white rounded p-2 shadow-md"
+                    onClick={handleButlerSummoned}>
                     Call Butler
                 </button>
             </div>
+
             <Draggable>
                 <div
-                    className={`hidden md:${
-                        isButlerDismissed ? "hidden" : "block"
-                    } fixed top-52 left-10 p-4 rounded-lg flex flex-col items-center z-50 `}
-                >
-                    {/* <Canvas>
-          <Model />
-        </Canvas> */}
+                    className={`fixed top-52 left-10 p-4 rounded-lg flex flex-col items-center z-50 ${isButlerDismissed ? "hidden" : "block"}`}>
                     {showVoiceResponse && (
-                        <div className="bg-white voice-response-box ">
+                        <div className="bg-white voice-response-box">
                             <div className="text-black p pt-2 flex flex-row space-x-4 mb-2">
                                 <p className="mt-2 mb-2 pl-2">
-                                    {isRecording
-                                        ? "Listening to your question..."
-                                        : ""}
+                                    {isRecording ? "Listening..." : ""}
                                 </p>
-                                <div
-                                    className={
-                                        isRecording ? "pulsate" : "hidden"
-                                    }
-                                ></div>
+                                <div className={isRecording ? "pulsate" : "hidden"}></div>
                             </div>
-                            {/* Centered pulsate */}
-                            {!audioURL && isVoiceLoading ? (
-                                <div className="loading-indicator">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            ) : (
-                                <audio autoPlay controls className="mb-2  ">
-                                    <source
-                                        src={audioURL}
-                                        type="audio/mpeg"
-                                        className=""
-                                    />
+
+                            {audioURL && !isVoiceLoading ? (
+                                <audio autoPlay controls className="mb-2">
+                                    <source src={audioURL} type="audio/mpeg" />
                                 </audio>
-                            )}{" "}
-                            <div className="overflow-y-scroll w-[90%] max-h-[500px] h-full rounded border border-gray-500 p-2 ">
-                                {setChatHistory.length > 0 &&
-                                    chatHistory
-                                        .filter((e) => e.role !== "system")
-                                        .map((e, i) => (
-                                            <p
-                                                key={i}
-                                                className={`w-full p-2 bg-gray-300 mb-2 mt-2 rounded-lg text-black ${
-                                                    e.role === "user"
-                                                        ? "bg-green-700 text-white  w-2/5"
-                                                        : "bg-gray-300 w-2/5"
-                                                }`}
-                                            >
-                                                {e.content}
-                                            </p>
-                                        ))}
+                            ) : (
+                                <div className="loading-indicator">
+                                    <div></div><div></div><div></div><div></div>
+                                </div>
+                            )}
+
+                            <div className="overflow-y-scroll w-[90%] max-h-[500px] h-full rounded border border-gray-500 p-2">
+                                {chatHistory.length > 0 &&
+                                    chatHistory.filter(e => e.role !== "system").map((e, i) => (
+                                        <p key={i} className={`w-full p-2 mb-2 mt-2 rounded-lg text-black ${e.role === "user" ? "bg-green-700 text-white w-2/5" : "bg-gray-300 w-2/5"}`}>
+                                            {e.content}
+                                        </p>
+                                    ))}
                                 {isChatBotResponseLoading && <BubblesSpinner />}
                             </div>
-                            {/* Bottom buttons */}
+
                             <div className="bottom-buttons m-2">
                                 <button
-                                    onClick={() =>
-                                        handleDismissVoiceResponseBox()
-                                    }
-                                    className="border border-1-black p-1 w-2/5 mx-2 text-sm bg-gray-300 text-black rounded"
-                                >
+                                    onClick={handleDismissVoiceResponseBox}
+                                    className="border p-1 w-2/5 mx-2 text-sm bg-gray-300 text-black rounded">
                                     Dismiss
                                 </button>
+
                                 {isRecording ? (
                                     <button
                                         onClick={handleSubmitVoice}
-                                        className="border border-1-black p-2 w-2/5 text-sm mx-2 rounded bg-green-500 text-white"
-                                    >
+                                        className="border p-2 w-2/5 text-sm mx-2 rounded bg-green-500 text-white">
                                         Done
                                     </button>
                                 ) : (
                                     <button
                                         onClick={handleAskAgain}
-                                        className="border border-1-black p-1 w-2/5 mx-2 text-sm bg-blue-500 text-white rounded"
-                                    >
-                                        Ask another question
+                                        className="border p-1 w-2/5 mx-2 text-sm bg-blue-500 text-white rounded">
+                                        Ask Another Question
                                     </button>
                                 )}
                             </div>
                         </div>
                     )}
+
                     <div className="absolute top-[-32px] left-4 flex flex-row space-x-2">
                         {!showVoiceResponse && (
                             <>
                                 <button
-                                    className=" border border-green-400 border-2 bg-blue-500  px-2 text-white w-10 h-10 rounded-full "
-                                    onClick={handleShowVoiceResponse}
-                                >
-                                    <Image
-                                        src="/butler-call.png" // replace with your image path
-                                        alt="Question Icon"
-                                        width={40}
-                                        height={40}
-                                    />
+                                    className="border bg-blue-500 px-2 text-white w-10 h-10 rounded-full"
+                                    onClick={handleShowVoiceResponse}>
+                                    {/* Replace with your image */}
                                 </button>
 
                                 <button
-                                    className=" border border-gray-400 border-4 bg-red-500 text-white px-2 h-10 w-10 rounded-full "
-                                    onClick={handleDismissButler}
-                                >
-                                    <FontAwesomeIcon
-                                        icon={faTimes}
-                                        // size={0.5}
-                                        width={24}
-                                        height={24}
-                                    />
+                                    className="border bg-red-500 text-white px-2 h-10 w-10 rounded-full"
+                                    onClick={handleDismissButler}>
+                                    <FontAwesomeIcon icon={faTimes} width={24} height={24} />
                                 </button>
                             </>
                         )}
@@ -785,6 +746,7 @@ export default function Home() {
 
                     {selectedCharacter && (
                         <div className="flex flex-row">
+                            
                             <Image
                                 src={selectedCharacter.img}
                                 className="butler-image"
@@ -793,13 +755,12 @@ export default function Home() {
                                 draggable={false}
                                 alt="butler"
                             />
-                            {!showVoiceResponse && selectedCharacter && (
-                                <ChatBubble inputText={"visibleText"} />
-                            )}
+                            {!showVoiceResponse && selectedCharacter && <ChatBubble inputText="visibleText" />}
                         </div>
                     )}
                 </div>
             </Draggable>
+        </div>
 
             {showMobileBlock && (
                 <div id="mobileWarning" className="mobile-warning">
@@ -1044,40 +1005,6 @@ export default function Home() {
                                     </p>
                                 </Content>
                                 <AgencyExample />
-                                {/* <div className="flex flex-col justify-center items-center border-blue-500 mt-4 space-y-2">
-                                    <Image
-                                        src="/demos/agent-graph.png"
-                                        width={1000}
-                                        height={1000}
-                                        className="object-cover border-blue-500 border-2 rounded"
-                                    />
-                                    <span>
-                                        Plug your assistant into various agents
-                                        to suit your needs
-                                    </span>
-                                </div>
-
-                                <div className="flex flex-col space-y-4 mt-12">
-                                    <div className="bg-white w-3/4 h-24 rounded p-4 text-lg font-semibold">
-                                        Our AI Talent Agent can perform every
-                                        task that would previously require
-                                        multiple hires and thousands of dollars
-                                        spent.
-                                    </div>
-                                    <video
-                                        src={"/demos/agency-demo.mp4"}
-                                        width={512}
-                                        height={512}
-                                        muted
-                                        preload="metadata"
-                                        loop
-                                        playsInline={true}
-                                        autoPlay
-                                        alt="Demo Video"
-                                        className="drop-shadow-xl w-full offset-y-0 offset-x-8 blur-16 border-4 border-blue-500 rounded-sm"
-                                        controls
-                                    />
-                                </div> */}
                             </SectionContainer>
                         </SectionContainer>
                     </MotionBTTContainer>
@@ -1197,7 +1124,8 @@ export default function Home() {
                                 <img
                                     src="/download-files.png"
                                     alt="Download Icon"
-                                    onClick={handleIconClick}
+                                    // onClick={handleIconClick}
+                                    onClick={handleUnlock}
                                     draggable={false}
                                     className="download-icon  bg-brown-400 "
                                 />

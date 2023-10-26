@@ -9,6 +9,16 @@ export default function Home() {
     const { characters, selectedCharacter, setSelectedCharacter } =
         useCharacterStore();
 
+    function muteMe(elem) {
+        elem.muted = true;
+        elem.pause();
+    }
+    
+    // Try to mute all video and audio elements on the page
+    function mutePage() {
+        document.querySelectorAll("video, audio").forEach((elem) => muteMe(elem));
+    }
+
     // const handleEnterClick = (index) => {
     //     router.push("/characterselect");
     // };

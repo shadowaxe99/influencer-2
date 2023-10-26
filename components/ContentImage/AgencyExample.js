@@ -96,6 +96,8 @@ export const AgencyExample = () => {
     const [generatedAgentCost, setGeneratedAgentCost] = useState(null);
     const [showChecklist, setShowChecklist] = useState(false);
     const [displayedTasks, setDisplayedTasks] = useState([]);
+    const [isRadioVisible, setRadioVisible] = useState(false);
+    const radioRef = useRef(null);
 
     function generateCost() {
         // This will generate a random number between 9 and 500
@@ -152,6 +154,27 @@ export const AgencyExample = () => {
             setDisplayedTasks(tasks);
         }
     }, [agentsRunning, selectedAgents]);
+    
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    setRadioVisible(true);
+                }
+            },
+            { threshold: 0.1 } // Adjust the threshold as needed
+        );
+
+        if (radioRef.current) {
+            observer.observe(radioRef.current);
+        }
+
+        return () => {
+            if (radioRef.current) {
+                observer.unobserve(radioRef.current);
+            }
+        };
+    }, []);
     return (
         <div className="flex flex-col w-full h-full relative">
             {" "}
@@ -166,6 +189,16 @@ export const AgencyExample = () => {
                 <span>
                     Plug your assistant into various agents to suit your needs
                 </span>
+            </div>
+            <div id="radio-trigger">
+                <div
+                    className={`radio-container ${
+                        isRadioVisible ? "sliding-radio" : ""
+                    }`}
+                    ref={radioRef}
+                >
+                    <AudioPlayer />
+                </div>
             </div>
             <div className="flex flex-col">
                 <video

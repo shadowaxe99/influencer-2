@@ -7,6 +7,7 @@ const useCharacterStore = create((set) => ({
             name: "Wise Old Man",
             skill: "AI Master",
             img: "/chars/nobackground/runscape-oldman.png",
+            video: "/char_videos/wise-old-man-video.mp4",
             description:
                 "For seasoned AI experts who prefer advanced, no-nonsense discussions.",
             sound: "/sounds/wiseoldman.mp3",
@@ -52,6 +53,7 @@ const useCharacterStore = create((set) => ({
             name: "Elysium Butler",
             skill: "AI Novice",
             img: "/e-butler.png",
+            video: "/char_videos/butler-video.mp4",
             description:
                 "For AI beginners desiring simple, jargon-free introductions.",
             sound: "/sounds/elysium.mp3",
@@ -97,6 +99,7 @@ const useCharacterStore = create((set) => ({
             name: "Nick Fury",
             skill: "AI Enthusiast",
             img: "/chars/nickfury.png",
+            video: "/char_videos/nick-video.mp4",
             description:
                 "For those with some AI exposure, ready to delve deeper.",
             sound: "/sounds/nickfury.mp3",
@@ -143,6 +146,7 @@ const useCharacterStore = create((set) => ({
             name: "Spock",
             skill: "AI Strategist",
             img: "/chars/spock.jpeg",
+            video: "/char_videos/spock-video.mp4",
             description:
                 "For the logical minds acquainted with AI and seeking in-depth analyses.",
             sound: "/sounds/spock.mp3",
@@ -188,6 +192,7 @@ const useCharacterStore = create((set) => ({
             name: "Rabbi",
             skill: "AI Scholar",
             img: "/chars/star-of-david.png",
+            video: "/char_videos/rabbi-video.mp4",
             description:
                 "For learners who've explored AI basics and crave deeper insights.",
             sound: "/sounds/rabbi.mp3",
@@ -233,6 +238,7 @@ const useCharacterStore = create((set) => ({
             name: "Spongebob",
             skill: "AI Explorer",
             img: "/chars/nobackground/sponge.png",
+            video: "/char_videos/spongebob-video.mp4",
             description:
                 "For those new to AI, seeking fun and engaging overviews.",
             sound: "/sounds/spongebob.mp3",
@@ -279,6 +285,7 @@ const useCharacterStore = create((set) => ({
             name: "The Pope",
             skill: "AI Ethicist",
             img: "/chars/nobackground/pope.png",
+            video: "/char_videos/pope-video.mp4",
             description:
                 "For those keen on discussing the moral and ethical implications of AI.",
             sound: "/sounds/pope.mp3",
@@ -324,6 +331,7 @@ const useCharacterStore = create((set) => ({
             name: "Gru",
             skill: "AI Tinkerer",
             img: "/chars/nobackground/gru.png",
+            video: "/char_videos/gru-video.mp4",
             description:
                 "For the playful minds who've dabbled in AI and enjoy creative approaches.",
             sound: "/sounds/gru.mp3",

@@ -12,7 +12,7 @@ import { profiles, frequentlyUsed } from "./profiles";
 import TeamCarousel from "@components/TeamCarousel/TeamCarousel";
 import HoneycombContainer from "./PhoneChat";
 
-const TeamChat = () => {
+const ChatPage = () => {
     // States
     const [password, setPassword] = useState("");
     const [isPasswordErrorVisible, setIsPasswordErrorVisible] = useState(false);
@@ -263,129 +263,60 @@ const TeamChat = () => {
         }
     }, [chatHistory]);
 
+
     return (
-        <>
-            <div className="flex flex-row">
-                <div className="flex flex-col w-full mb-2">
-                    {/* <p className="font-semibold text-center">Frequently used</p>
-                    <div className="flex flex-row w-1/2 mx-auto space-x-2 text-center">
-                        {randomProfiles.map((f, i) => (
-                            <div
-                                key={`${f.id}-${i}`}
-                                className="flex flex-col bg-white rounded w-full p-2 h-full shadow-md hover:cursor-pointer transform transition-transform duration-300 hover:-translate-y-2"
-                                onClick={() => handleProfileClick(f)}
-                            >
-                                <div className="relative w-12 h-12 border-2 border-gray-300 rounded-full mx-auto overflow-hidden">
-                                    <Image
-                                        id={f.id}
-                                        src={f.image}
-                                        alt={f.name}
-                                        objectFit="cover"
-                                        layout="fill"
-                                    />
+        <div className="teamchat-wrapper bg-gray-100 p-4">
+            <div className="teamchat-header flex justify-between items-center bg-white p-4 rounded-t-lg">
+                <h1 className="text-xl font-semibold">Team Chat</h1>
+                <CustomSelect
+                    options={profiles}
+                    onSelect={(option) => handleProfileClick(option)}
+                    selectedProfile={selectedProfile}
+                />
+            </div>
+
+            <div className="teamchat-body bg-white p-4 rounded-b-lg">
+                <div className="chatHistory overflow-y-auto h-96 mb-4">
+                    {chatHistory.map((chat, index, arr) => (
+                        <React.Fragment key={index}>
+                            {index === 0 || chat.profileId !== arr[index - 1].profileId ? (
+                                <div className="profileSwitchIndicator text-gray-500 mb-2">
+                                    Chatting with {chat.profileName}
                                 </div>
-                                <p className="m-0">{f.name}</p>
-                                <p className="m-0">{f.group}</p>
+                            ) : null}
+
+                            <div className="chatMessage flex items-end mb-2">
+                                <div className="chatAvatar w-12 h-12 rounded-full overflow-hidden mr-2">
+                                    <Image src={chat.profileImage} alt={chat.profileName} layout="fill" />
+                                </div>
+                                <div className="chatBubble p-2 bg-gray-200 rounded-lg">
+                                    {chat.profileResponse}
+                                </div>
                             </div>
-                        ))}
-                    </div> */}
+                        </React.Fragment>
+                    ))}
+                </div>
 
-                    <TeamCarousel
-                        handleProfileClick={(p) => handleProfileClick(p)}
-                    />
-                    <HoneycombContainer profiles={profiles} />
+                <div className="chatbox flex items-center gap-2">
+                    <textarea
+                        id="chat-box"
+                        className="flex-grow h-12 p-2 rounded-lg bg-gray-200 focus:outline-none focus:ring focus:ring-gray-300"
+                        placeholder="Send a message..."
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                    ></textarea>
+                    <button
+                        disabled={isLoading}
+                        id="send-button"
+                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 active:bg-green-700"
+                        onClick={handleSendClick}
+                    >
+                        Send
+                    </button>
                 </div>
             </div>
-            <div className="teamchat-container">
-                <div className="flex flex-col justify-center">
-                    <p className="w-1/2 mx-auto text-center font-semibold">
-                        {selectedProfile
-                            ? `Chat with: ${selectedProfile.name}`
-                            : "Chat with our team"}
-                    </p>
-                    <CustomSelect
-                        options={profiles}
-                        onSelect={(option) => handleProfileClick(option)}
-                        selectedProfile={selectedProfile}
-                    />
-                </div>
-
-                <div className="chatHistory">
-                    {chatHistory.map((chat, index, arr) => {
-                        console.log("Chathistory", chatHistory);
-
-                        return (
-                            <>
-                                {index === 0 ||
-                                chat.profileId !== arr[index - 1].profileId ? (
-                                    <div className="profileSwitchIndicator">
-                                        From {chat.profileName}
-                                    </div>
-                                ) : null}
-
-                                <div className="flex flex-row justify-end">
-                                    <div className="userMessage">
-                                        {chat.userMessage}
-                                    </div>
-                                    <div className="relative w-12 h-12 border-2 border-gray-300 rounded-full ml-2 bg-green-400 overflow-hidden"></div>
-                                </div>
-                                <div className="flex flex-row justify-start">
-                                    <div className="relative w-12 h-12 border-2 border-gray-300 rounded-full ml-2 overflow-hidden">
-                                        {selectedProfile && (
-                                            <Image
-                                                src={chat.profileImage}
-                                                alt={""}
-                                                objectFit="cover"
-                                                layout="fill"
-                                            />
-                                        )}
-                                    </div>
-
-                                    <div className="profileResponse">
-                                        {chat.profileResponse}
-                                    </div>
-                                </div>
-                                {isLoading &&
-                                    index === chatHistory.length - 1 && (
-                                        <BubblesSpinner />
-                                    )}
-
-                                {audioUrl && <audio src={audioUrl} autoPlay />}
-                            </>
-                        );
-                    })}
-                </div>
-
-                <div className="chatbox">
-                    <div className="flex flex-col items-center gap-4 w-full">
-                        <textarea
-                            id="chat-box"
-                            className="flex-grow h-16 w-4/5 mx-4 rounded px-3 py-1 bg-gray-200 text-black rounded-lg focus:outline-none focus:ring focus:ring-gray-300"
-                            placeholder="Send a message to the selected executive..."
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                        ></textarea>
-                        <div className="flex flex-row w-4/5 justify-between">
-                            <button
-                                onClick={downloadChatHistory}
-                                className="bg-gray-500 text-white h-12  px-6 py-2 rounded-lg shadow-md hover:bg-gray-600 active:bg-gray-700"
-                            >
-                                Download Chat History
-                            </button>
-                            <button
-                                disabled={isLoading}
-                                id="send-button"
-                                className="bg-green-500 text-white h-12 px-6 py-2 rounded-lg shadow-md hover:bg-green-600 active:bg-green-700 "
-                                onClick={handleSendClick}
-                            >
-                                Send
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
+        </div>
     );
 };
 
-export default TeamChat;
+export default ChatPage;
