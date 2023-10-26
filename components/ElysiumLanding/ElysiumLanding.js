@@ -77,7 +77,6 @@ export default function ElysiumLanding({ handleEnterInteractiveClick, handleEnte
       <div className="absolute animate-spin" style={{ animationDuration: speed }}>
         <div style={{ transform: `translateX(${distance}px)` }}>
           <div className="w-12 h-12 border-2 border-gray-100 rounded-full overflow-hidden shadow-lg z-50">
-            {/* Dont lazy load logo */}
             <Image 
                 src={imagePath} 
                 objectFit="cover" 
