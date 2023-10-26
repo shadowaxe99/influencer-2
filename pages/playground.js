@@ -103,6 +103,22 @@ export default function Home() {
         "ELYSIUM_INNOVATIONS_DECK.pdf",
         "Elysium_Business_Plan.pdf"
     ]);
+    const [fontFamily, setFontFamily] = useState("");
+    const [fontVariable, setFontVariable] = useState("");
+    const [letterSpacing, setLetterSpacing] = useState("");
+
+    useEffect(() => {
+        if (selectedCharacter) {
+            setFontFamily(selectedCharacter.fontFamily);
+            setFontVariable(selectedCharacter.fontVariable);
+            setLetterSpacing(selectedCharacter.letterSpacing);
+            console.log("selectedCharacter", selectedCharacter);
+            console.log("font family", selectedCharacter.fontFamily);
+            console.log("font variable", selectedCharacter.fontVariable);
+        }
+    }, []);
+
+
     const accordionData = [
         {
             id: uuid(),
@@ -570,6 +586,7 @@ export default function Home() {
 
     return (
         <Layout className="" toggleSidebar={toggleSidebar}>
+            <div className={`${fontFamily} ${fontVariable} ${letterSpacing}`}>
             <div className="toggle-sidebar" onClick={toggleSidebar}>
                 <div className="bar"></div>
                 <div className="bar"></div>
@@ -585,14 +602,7 @@ export default function Home() {
                             Welcome to Elysium
                         </a>
                     </li>
-                    <li>
-                        <a
-                            href="#fourthSlide"
-                            onClick={(e) => scrollToSlide(e, "fourthSlide")}
-                        >
-                            The AI Conundrum
-                        </a>
-                    </li>
+                    
                     <li>
                         <a
                             href="#thirdSlide"
@@ -602,6 +612,15 @@ export default function Home() {
                         </a>
                     </li>
 
+                    <li>
+                        <a
+                            href="#fourthSlide"
+                            onClick={(e) => scrollToSlide(e, "fourthSlide")}
+                        >
+                            The AI Conundrum
+                        </a>
+                    </li>
+                    
                     <li>
                         <a
                             href="#secondSlide"
@@ -807,36 +826,10 @@ export default function Home() {
                     <MotionBTTContainer
                         transition={{ delay: 0.2, duration: 0.5 }}
                     >
-                        <SectionContainer id="features" className="features">
-                            <div id="fourthSlide"></div>
-                            <BadgeGroup alignment="center">
-                                <BadgeMessage>
-                                    Fortune favors the brave
-                                </BadgeMessage>
-                            </BadgeGroup>
-                            <PageTitle
-                                className="text-center mx-auto"
-                                type="default"
-                            >
-                                {"AI agents that don't Mingle Stay Single"}{" "}
-                            </PageTitle>
-                            <Content className="text-center" alignment="center">
-                                <p className="font-semibold italic">
-                                    Why Solo Performers Need an Orchestra for
-                                    Symphony
-                                </p>
-                            </Content>
-
-                            <ContentImage2 shouldPlayWaves={true} />
-                        </SectionContainer>
-                    </MotionBTTContainer>
-                    {/* What is an Agent?*/}
-                    <MotionBTTContainer
-                        transition={{ delay: 0.2, duration: 0.5 }}
-                    >
                         <SectionContainer className="feature-tabs">
                             <div id="thirdSlide"></div>
-                            <BadgeGroup alignment="center">
+                            <BadgeGroup alignment="center"
+                                        className={`${fontFamily} ${fontVariable}`}>           
                                 <BadgeMessage>Know thyself</BadgeMessage>
                                 {/* <BadgeIcon icon="twemoji:waving-hand" /> */}
                             </BadgeGroup>
@@ -878,6 +871,34 @@ export default function Home() {
                             ></iframe> */}
                         </SectionContainer>
                     </MotionBTTContainer>
+                    <MotionBTTContainer
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                    >
+                        <SectionContainer id="features" className="features">
+                            <div id="fourthSlide"></div>
+                            <BadgeGroup alignment="center">
+                                <BadgeMessage>
+                                    Fortune favors the brave
+                                </BadgeMessage>
+                            </BadgeGroup>
+                            <PageTitle
+                                className={'text-center mx-auto'}
+                                type="default"
+                            >
+                                
+                                {"AI agents that don't Mingle Stay Single"}
+                            </PageTitle>
+                            <Content className="text-center" alignment="center">
+                                <p className="font-semibold italic">
+                                    Why Solo Performers Need an Orchestra for
+                                    Symphony
+                                </p>
+                            </Content>
+
+                            <ContentImage2 shouldPlayWaves={true} />
+                        </SectionContainer>
+                    </MotionBTTContainer>
+                    {/* What is an Agent?*/}
                     {/* Features */}
                     <MotionBTTContainer
                         transition={{ delay: 0.2, duration: 0.5 }}
@@ -1227,6 +1248,7 @@ export default function Home() {
                         </SectionContainer>
                     </MotionBTTContainer>
                 </SectionContainer>
+            </div>
             </div>
         </Layout>
     );

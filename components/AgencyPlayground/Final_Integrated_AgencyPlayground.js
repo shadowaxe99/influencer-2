@@ -184,7 +184,7 @@ const AgencyPlayground = () => {
 
     return (
         <DndProvider backend={HTML5Backend}>
-            <div className="intro-text">
+            <div className="intro-text text-center">
                 <h1>Welcome to the Future of Influencer Marketing!</h1>
                 <p>Drag and drop our AI agents below to unlock the magic of automation and watch your savings skyrocket. Ready to play?</p>
             </div>
@@ -302,9 +302,10 @@ const AgencyPlayground = () => {
                     </div>
                 </div>
             </div>
-            <ScoreDashboard score={score} totalCost={totalCost} multiplier={multiplier} />
-            <SpecialEffects score={score} />
-            <RadioPlayer />
+            <div className="text-center">
+                <ScoreDashboard score={score} totalCost={totalCost} multiplier={multiplier} />
+                <SpecialEffects score={score} />
+            </div>
         </DndProvider>  
     );
 };
