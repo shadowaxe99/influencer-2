@@ -122,6 +122,7 @@ export const Revenue = () => {
                             alt="Page Banner"
                             objectFit="cover"
                             className="z-20  mx-auto drop-shadow-xl w-full offset-y-0 offset-x-8 blur-16 border-4 border-blue-500 rounded glow-image float-image"
+                            loading="lazy"
                         />
                     </div>
                 </MotionBTTContainer>

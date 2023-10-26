@@ -23,6 +23,7 @@ const InfoCard = ({ info, onClose }) => {
                         alt={info.name}
                         objectFit="cover"
                         layout="fill"
+                        loading="lazy"
                     />
                 </div>
                 <div>
@@ -109,6 +110,7 @@ const CustomSelect = ({ options, onSelect, selectedProfile }) => {
                                 alt={selectedOption.name}
                                 objectFit="cover"
                                 layout="fill"
+                                loading="lazy"
                             />
                         )}
                     </div>
@@ -153,6 +155,7 @@ const CustomSelect = ({ options, onSelect, selectedProfile }) => {
                                     alt={option.name}
                                     objectFit="cover"
                                     layout="fill"
+                                    loading="lazy"
                                 />
                             </div>
                             <div className="text-black flex flex-col">

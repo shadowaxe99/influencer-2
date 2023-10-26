@@ -58,7 +58,15 @@ const CharacterSelect = () => {
         <div className="grid grid-cols-4 gap-6">
           {characters.map((character, index) => (
             <div className="flex flex-col items-center group card animate__animated animate__zoomIn hover-effect">
-              <Image src={character.img} alt={character.name} height={100} width={100} className="rounded-full transform transition-all duration-300 ease-in-out" onMouseEnter={() => playGreetingSound(character.greeting_sound)} />
+              <Image 
+                  src={character.img} 
+                  alt={character.name} 
+                  height={100} 
+                  width={100} 
+                  className="rounded-full transform transition-all duration-300 ease-in-out" 
+                  onMouseEnter={() => playGreetingSound(character.greeting_sound)} 
+                  loading="lazy"
+                />
               <h3 className="text-3xl mt-6 text-white group-hover:text-neon-blue transition-all duration-300">{character.name}</h3>
               <h2 className="text-2xl mt-2 text-white group-hover:text-neon-blue transition-all duration-300">{character.skill}</h2>
               <Button className="mt-4 text-white bg-yellow-500 text-2xl group-hover:bg-neon-green transition-all duration-300" onClick={() => stopHackSound(index)}>Select</Button>

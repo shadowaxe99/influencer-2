@@ -185,6 +185,7 @@ export const AgencyExample = () => {
                     width={1000}
                     height={1000}
                     className="object-cover border-blue-500 border-2 rounded"
+                    loading="lazy"
                 />
                 <span>
                     Plug your assistant into various agents to suit your needs
@@ -213,6 +214,7 @@ export const AgencyExample = () => {
                     alt="Demo Video"
                     className="drop-shadow-xl h-full w-3/4 mx-auto offset-y-0 offset-x-8 blur-16 border-4 border-blue-500 rounded-sm"
                     controls
+                    loading="lazy"
                 />
                 <span className="mx-auto">AI Talent Agent Demo</span>
             </div>

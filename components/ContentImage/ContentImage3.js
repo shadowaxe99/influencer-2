@@ -154,6 +154,7 @@ export const ContentImage3 = () => {
                             alt="Demo Video"
                             className="drop-shadow-xl w-full offset-y-0 offset-x-8 blur-16 border-4 border-blue-500 rounded-sm"
                             controls
+                            loading="lazy"
                         />
                     </div>
                 ))}

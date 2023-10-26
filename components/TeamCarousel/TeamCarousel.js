@@ -96,6 +96,7 @@ export default function TeamCarousel({ handleProfileClick }) {
                                             alt={profile.name}
                                             objectFit="cover"
                                             layout="fill"
+                                            loading="lazy"
                                         />
                                     </div>
                                     <div className="flex flex-col text-left ml-4">

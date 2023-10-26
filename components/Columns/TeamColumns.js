@@ -230,6 +230,7 @@ export const TeamColumns = () => {
                                     // draggable={false}
                                     objectFit="cover"
                                     layout="fill"
+                                    loading="lazy"
                                 />
                             </div>
                             <h3 className="text-xl mb-2 font-medium text-black">
@@ -255,6 +256,7 @@ export const TeamColumns = () => {
                                             // draggable={false}
                                             objectFit="cover"
                                             layout="fill"
+                                            loading="lazy"
                                         />
                                     </div>
                                     <h2 className="modal-title">Role:</h2>

@@ -23,6 +23,7 @@ export const Header = ({toggleSidebar}) => {
                                 width="100"
                                 priority
                                 draggable={false}
+                                loading="lazy"
                             />
                         </Link>
                     </h1>

@@ -337,6 +337,7 @@ const TeamChat = () => {
                                                 alt={""}
                                                 objectFit="cover"
                                                 layout="fill"
+                                                loading="lazy"
                                             />
                                         )}
                                     </div>

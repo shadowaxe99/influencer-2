@@ -754,6 +754,7 @@ export default function Home() {
                                 width={100}
                                 draggable={false}
                                 alt="butler"
+                                loading="lazy"
                             />
                             {!showVoiceResponse && selectedCharacter && <ChatBubble inputText="visibleText" />}
                         </div>
@@ -935,6 +936,7 @@ export default function Home() {
                                             loop
                                             muted
                                             src="/ironman-video.mp4"
+                                            loading="lazy"
                                         ></video>
                                         <CardHeader className="!text-black !text-2xl !font-bold">
                                             Elysium OS on Web & Desktop
@@ -955,6 +957,7 @@ export default function Home() {
                                             loop
                                             muted
                                             src="/build-project-video.mp4"
+                                            loading="lazy"
                                         ></video>
                                         <CardHeader className="!text-black !text-2xl !font-bold">
                                             Automation Station

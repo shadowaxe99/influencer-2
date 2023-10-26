@@ -146,7 +146,7 @@ export const ContentImage = () => {
                                             width={32} // adjust size as needed
                                             height={32} // adjust size as needed
                                             className="absolute z-50"
-                                            //
+                                            loading="lazy"
                                             // Can use the belore to add colored backgorunt o clicker image
                                             // style={{
                                             //     ...transformStyle(item.align, item.id),
@@ -209,6 +209,7 @@ export const ContentImage = () => {
                                             loop
                                             muted
                                             autoPlay
+                                            loading="lazy"
                                         />
                                     </div>
                                     <div className="flip-card-back p-8">

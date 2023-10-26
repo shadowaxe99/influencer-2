@@ -419,6 +419,7 @@ const Preloader = ({ handleCharacterClick }) => {
                                         width={100}
                                         height={100}
                                         className="character-image"
+                                        loading="lazy"
                                     />
                                     <div className="font-semibold">
                                         {character.name}

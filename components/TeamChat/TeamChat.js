@@ -287,7 +287,9 @@ const ChatPage = () => {
 
                             <div className="chatMessage flex items-end mb-2">
                                 <div className="chatAvatar w-12 h-12 rounded-full overflow-hidden mr-2">
-                                    <Image src={chat.profileImage} alt={chat.profileName} layout="fill" />
+                                    <Image src={chat.profileImage} alt={chat.profileName} layout="fill" 
+                                            loading="lazy"
+                                            />
                                 </div>
                                 <div className="chatBubble p-2 bg-gray-200 rounded-lg">
                                     {chat.profileResponse}

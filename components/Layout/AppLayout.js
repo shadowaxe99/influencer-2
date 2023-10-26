@@ -35,6 +35,7 @@ export const AppLayout = ({ children }) => {
                                         height="25"
                                         width="100"
                                         priority
+                                        loading="lazy"
                                     />
                                 </Link>
                             </div>
@@ -126,6 +127,7 @@ export const AppLayout = ({ children }) => {
                                             height={32}
                                             width={32}
                                             className="rounded-full inline-block align-middle h-8 w-8 p-1"
+                                            loading="lazy"
                                         />
                                     )}
                                 </div>

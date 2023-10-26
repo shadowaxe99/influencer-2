@@ -46,6 +46,7 @@ export const Footer = () => {
                                         width="100"
                                         draggable={false}
                                         priority
+                                        loading="lazy"
                                     />
                                 </Link>
                                 {/* Get Template button; remove if not used */}

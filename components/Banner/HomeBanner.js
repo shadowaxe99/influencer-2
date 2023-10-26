@@ -67,6 +67,7 @@ export const HomeBanner = () => {
                                 priority
                                 draggable={false}
                                 className="rounded-full elysium-object-glow"
+                                loading="lazy"
                             />
                         </div>
                         <Content className="text-center " alignment="center">
@@ -96,6 +97,7 @@ export const HomeBanner = () => {
                             loop={true}
                             autoPlay
                             className="mx-auto border-blue-500 border-4 rounded shadow-xl"
+                            loading="lazy"
                         ></video>
                         {/* <Image
                             src="/temple.jpeg"

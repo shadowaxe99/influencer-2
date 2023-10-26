@@ -88,6 +88,7 @@ const VideoElement = React.memo(({ src }) => (
         loop={true}
         autoPlay
         className="mx-auto border-blue-500 border-4 rounded shadow-xl"
+        loading="lazy"
     ></video>
 ));
 VideoElement.displayName = "VideoElement";
@@ -232,6 +233,7 @@ export const RoadMap = () => {
                                       ]
                                     : item.video
                             }
+                            loading="lazy"
                         />
                         {/* <Image
                             src={item.image}

@@ -433,7 +433,10 @@ const AgentAnimation = ({ agent, path }) => {
             className="absolute h-24 w-1/2 text-black flex-col  flex justify-center items-center"
             style={{ animation: animationStyles[path] }}
         >
-            <Image height={48} width={48} src={agent.imageSrc} />
+            <Image height={48} 
+                width={48} 
+                src={agent.imageSrc}
+                loading="lazy" />
             <p className="text-sm font-bold w-full text-center">{agent.name}</p>
 
             {/* Add more agent details or display components */}

@@ -46,7 +46,13 @@ export default function ElysiumLanding({ handleEnterInteractiveClick, handleEnte
               imagePath={circle.imagePath}
             />
           ))}
-          <Image src="/elysium-logo-white.png" width={200} height={200} className="z-50 shadow-lg rounded-full" />
+          <Image 
+              src="/elysium-logo-white.png" 
+              width={200} 
+              height={200} 
+              className="z-50 shadow-lg rounded-full" 
+              loadin="lazy"
+            />
           <div className="absolute top-1/4 space-y-4 z-50">
             <Button onClick={() => {
                 setEnterClicked(true);
@@ -70,8 +76,13 @@ export default function ElysiumLanding({ handleEnterInteractiveClick, handleEnte
     return (
       <div className="absolute animate-spin" style={{ animationDuration: speed }}>
         <div style={{ transform: `translateX(${distance}px)` }}>
-          <div className="w-12 h-12 border-2 border-gray-100 rounded-full overflow-hidden shadow-lg">
-            <Image src={imagePath} objectFit="cover" layout="fill" />
+          <div className="w-12 h-12 border-2 border-gray-100 rounded-full overflow-hidden shadow-lg z-50">
+            <Image 
+                src={imagePath} 
+                objectFit="cover" 
+                layout="fill" 
+                loading="lazy"
+                />
           </div>
         </div>
       </div>

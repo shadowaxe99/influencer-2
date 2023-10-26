@@ -101,6 +101,7 @@ export const ContentImage4 = () => {
               playsInline={true}
               controls
               poster={item.thumbnail}
+              loading="lazy"
             ></video>
           </div>
           <div

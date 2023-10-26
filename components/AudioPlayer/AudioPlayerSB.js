@@ -57,6 +57,7 @@ const AudioPlayerSB = () => {
                 loop 
                 muted 
                 autoPlay
+                loading="lazy"
             >
                 <source src="/radio-bg-pika.mp4" type="video/mp4" />
             </video>
@@ -77,6 +78,7 @@ const AudioPlayerSB = () => {
                     className="w-full h-full"
                     onClick={togglePlayPause}
                     style={{ cursor: "pointer", width: "95%", height: "95%"}}
+                    loading="lazy"
                 />
             </div>
     

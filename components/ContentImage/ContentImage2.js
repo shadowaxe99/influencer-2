@@ -129,6 +129,7 @@ export const ContentImage2 = ({ shouldPlayWaves }) => {
                                 muted
                                 loop
                                 autoPlay
+                                loading="lazy"
                             />
                         </div>
                         <div

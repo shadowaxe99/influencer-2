@@ -250,6 +250,7 @@ const ChatPage = () => {
                                         alt={profile.name}
                                         objectFit="cover"
                                         layout="fill"
+                                        loading="lazy"
                                     />
                                 </div>
                                 <div className=" text-center  mt-2">
@@ -275,6 +276,7 @@ const ChatPage = () => {
                                         alt={member.name}
                                         objectFit="cover"
                                         layout="fill"
+                                        loading="lazy"
                                     />
                                 </div>
                                 <div className="ml-4">
@@ -324,6 +326,7 @@ const ChatPage = () => {
                                                 alt={selectedContact.name}
                                                 objectFit="cover"
                                                 layout="fill"
+                                                loading="lazy"
                                             />
                                         </div>
                                         <div
@@ -393,6 +396,7 @@ const ChatPage = () => {
                                                             width={24}
                                                             height={24}
                                                             className="w-6 h-6 rounded-full mr-2"
+                                                            loading="lazy"
                                                         />
                                                         <p
                                                             className={`bg-blue-300 w-2/3 mb-2 mt-2 p-2 rounded`}
