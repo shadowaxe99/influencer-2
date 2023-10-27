@@ -19,6 +19,20 @@ export const HomeBanner = () => {
         themeImagePaths,
         setThemeImagePaths
     } = useCharacterStore();
+    const [primary, setPrimary] = useState("text-black");
+    const [secondary, setSecondary] = useState("text-black");
+    const [tertiary, setTertiary] = useState("text-black");
+
+    useEffect(() => {
+        if (selectedCharacter) {
+            setPrimary(selectedCharacter.fontColors.primary);
+            setSecondary(selectedCharacter.fontColors.secondary);
+            setTertiary(selectedCharacter.fontColors.tertiary);
+            console.log("Colors: ", selectedCharacter.fontColors.primary, selectedCharacter.fontColors.secondary, selectedCharacter.fontColors.tertiary);
+        }
+    }
+    , []);
+
     console.log(themeImagePaths[0]);
     useEffect(() => {
         const videoElement = document.getElementById("myVideo");
@@ -76,7 +90,14 @@ export const HomeBanner = () => {
                                 with you. */}
                             </p>
                         </Content>
-
+                        <br />
+                        <PageTitle className={`text-center mx-auto mt-2 text-7xl ${secondary}`}>
+                            {selectedCharacter? selectedCharacter.contentText[0] : "Welcome to the Future"}
+                            <br />
+                        </PageTitle>
+                        <div className="mt-6 mb-16 text-center text-4xl whitespace-nowrap">
+                            {selectedCharacter? selectedCharacter.contentText[1] : "Elysium Innovations"}
+                        </div>
                         <video
                             id="myVideo"
                             width={1024}

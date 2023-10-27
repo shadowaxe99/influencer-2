@@ -60,6 +60,11 @@ const useCharacterStore = create((set) => ({
             fontFamily: "font-runescape",
             fontVariable: runescapePlain.variable,
             letterSpacing: "tracking-wide",
+            fontColors: {
+                primary: "text-black",
+                secondary: "text-red-700",
+                tertiary: "text-blue-600",
+            }
         },
         {
             id: "1",
@@ -109,6 +114,11 @@ const useCharacterStore = create((set) => ({
             fontFamily: "font-batman",
             fontVariable: batmanFont.variable,
             letterSpacing: "tracking-wides",
+            fontColors: {
+                primary: "text-black",
+                secondary: "text-red-700",
+                tertiary: "text-blue-600",
+            }
         },
         {
             id: "2",
@@ -133,8 +143,8 @@ const useCharacterStore = create((set) => ({
                 "/character-theme-images/animated-nickfury/fury-4.mp4"
             ],
             contentText: [
-                "🕶️Welcome Agent🕶️",
-                "To Elysium Innovations",
+                "🕶️   Welcome Agent   🕶️",
+                "Elysium Innovations",
                 "🔫 The AI Conundrum: A Threat Neutralized🔫",
                 "Listen up, soldier. We've tackled the problem of isolated AI agents. They're now part of a team, just like the Avengers.",
                 "🛡️ Your Personal AI Butler: The Coulson You Never Knew You Needed 🛡️",
@@ -158,7 +168,12 @@ const useCharacterStore = create((set) => ({
             ],
             fontFamily: "font-avengers",
             fontVariable: avengersFont.variable,
-            letterSpacing: "tracking-wider",
+            letterSpacing: "tracking-widest",
+            fontColors: {
+                primary: "text-black",
+                secondary: "text-red-700",
+                tertiary: "text-blue-700",
+            }
         },
         {
             id: "3",
@@ -208,6 +223,11 @@ const useCharacterStore = create((set) => ({
             fontFamily: "font-startrek",
             fontVariable: starTrekFont.variable,
             letterSpacing: "tracking-widest",
+            fontColors: {
+                primary: "text-black",
+                secondary: "text-red-700",
+                tertiary: "text-blue-600",
+            }
         },
         {
             id: "4",
@@ -257,6 +277,11 @@ const useCharacterStore = create((set) => ({
             fontFamily: "font-ancient",
             fontVariable: ancient.variable,
             letterSpacing: "tracking-wider",
+            fontColors: {
+                primary: "text-black",
+                secondary: "text-red-700",
+                tertiary: "text-blue-600",
+            }
         },
         {
             id: "5",
@@ -307,6 +332,11 @@ const useCharacterStore = create((set) => ({
             fontFamily: "font-spongebob",
             fontVariable: spongebobFont.variable,
             letterSpacing: "tracking-widest",
+            fontColors: {
+                primary: "text-black",
+                secondary: "text-red-700",
+                tertiary: "text-blue-600",
+            }
         },
         {
             id: "6",
@@ -356,6 +386,11 @@ const useCharacterStore = create((set) => ({
             fontFamily: "font-pope",
             fontVariable: popeFont.variable,
             letterSpacing: "tracking-wide",
+            fontColors: {
+                primary: "text-black",
+                secondary: "text-red-700",
+                tertiary: "text-blue-600",
+            }
         },
         {
             id: "7",
@@ -405,6 +440,11 @@ const useCharacterStore = create((set) => ({
             fontFamily: "font-villain",
             fontVariable: villain.variable,
             letterSpacing: "tracking-wide",
+            fontColors: {
+                primary: "text-black",
+                secondary: "text-red-700",
+                tertiary: "text-blue-600",
+            }
         }
     ],
     selectedCharacter: null,

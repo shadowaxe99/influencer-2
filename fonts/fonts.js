@@ -47,7 +47,8 @@ export const popeFont = localFont({
 });
 
 export const avengersFont = localFont({
-    src: "../public/fonts/avengers.ttf",
+    // src: "../public/fonts/avengers.ttf",
+    src: "../public/fonts/avengers.otf",
     variable: "--font-avengers"
 });
 
