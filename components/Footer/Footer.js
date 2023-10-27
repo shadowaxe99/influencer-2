@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ButtonGroup } from "@components/Button";
 import { Icon } from "@iconify/react";
+import useCharacterStore from "@store/charStore";
 
 const DATA = [
     {
@@ -26,6 +27,14 @@ const DATA = [
 ];
 
 export const Footer = () => {
+    const {
+        selectedCharacter,
+        setSelectedCharacter,
+        characters,
+        themeImagePaths,
+        setThemeImagePaths
+    } = useCharacterStore();
+
     const date = new Date();
     const year = date.getFullYear();
 
@@ -94,8 +103,14 @@ export const Footer = () => {
             <SectionContainer className="footer-credits relative z-10">
                 <div className="wrap wrap-px py-6">
                     <p className="my-0">
-                        © {year} Elysium Innovations 2023. All rights reserved
-                        {"  "}
+                        {selectedCharacter ? selectedCharacter.contentText[20] :
+                            "So are you ready to join the future?"
+                        }
+                    </p>
+                    <p className="my-0">
+                        {selectedCharacter ? selectedCharacter.contentText[21] :
+                            "© 2024 Elysium Innovations 2023. All rights reserved"
+                        }
                         {/* <span className="font-normal">
                             A template by{" "}
                             <Link

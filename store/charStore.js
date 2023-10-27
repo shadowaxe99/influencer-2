@@ -307,7 +307,6 @@ const useCharacterStore = create((set) => ({
             contentText: [
                 "🍍 Welcome to Elysium Innovations 🍍",
                 "Where your digital life gets the Bikini Bottom treatment!",
-                "🎵 Ahoy, Mateys! Ready to set sail on the AI Revolution? 🎵",
                 "🌊 Your Personal AI Butler Awaits! 🌊",
                 "Just like SpongeBob is to the Krusty Krab, our AI butler is to your digital world—always there, always eager, and always exceptional!",
                 "🦑 The AI Conundrum: Solved! 🦑",

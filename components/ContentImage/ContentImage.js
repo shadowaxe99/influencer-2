@@ -7,6 +7,8 @@ import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
+import useCharacterStore from "@store/charStore";
+
 const ContentImageData = [
     {
         id: uuid(),
@@ -61,6 +63,20 @@ const ContentImageData = [
 ];
 
 export const ContentImage = () => {
+    const {
+        selectedCharacter,
+        setSelectedCharacter,
+        characters,
+        themeImagePaths,
+        setThemeImagePaths
+    } = useCharacterStore();
+
+    // useEffect(() => {
+    //     if (selectedCharacter) {
+    //         ContentImageData[1].title = selectedCharacter.contentText[10];
+    //     }
+    // }, []);
+
     const [isHovered, setIsHovered] = useState(false);
     const [scrollY, setScrollY] = useState(0);
     const [hoveredId, setHoveredId] = useState(null);
@@ -256,7 +272,7 @@ export const ContentImage = () => {
                             }} // adjust as needed
                         >
                             <h3
-                                className="mb-6 h4 md:h3 font-semibold text-black text-xl w-full"
+                                className="mb-6 h4 md:h3 font-semibold text-black text-l w-full leading-loose"
                                 style={{ fontSize: "3em" }} // adjust as needed
                             >
                                 {item.title}
