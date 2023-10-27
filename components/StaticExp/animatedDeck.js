@@ -65,7 +65,7 @@ const AnimatedDeckElysium = () => {
             {Array.from({ length: totalSlides }).map((_, index) => (
               <img 
                 key={index}
-                src={`/slides/Slide${index + 1}.jpeg`} 
+                src={`/slides/Slide${index + 1}.jpg`} 
                 alt={`Slide ${index + 1}`} 
                 className="slide-image"
               />
