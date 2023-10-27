@@ -111,7 +111,7 @@ export const Footer = () => {
             </SectionContainer>
             <div className="footer--background"></div>
             <video
-                className="absolute bottom-0 right-0 z-0 object-cover"
+                className="absolute bottom-0 right-0 z-0 object-cover us-israel-video"
                 src="/israel-usa-video.mp4"
                 autoPlay
                 muted
