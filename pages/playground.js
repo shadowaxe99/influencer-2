@@ -973,10 +973,12 @@ export default function Home() {
                                             loading="lazy"
                                         ></video>
                                         <CardHeader className="!text-black !text-2xl !font-bold">
-                                            Automation Station
+                                            {selectedCharacter ? selectedCharacter.contentText[8] :
+                                                "Automation Station"
+                                            }
                                         </CardHeader>
                                         <p>
-                                            {
+                                            {selectedCharacter ? selectedCharacter.contentText[9] :
                                                 "The hub where efficiency meets innovation. Manage and deploy AI agents effortlessly, making your life simpler and more exciting."
                                             }
                                         </p>
@@ -1064,14 +1066,17 @@ export default function Home() {
                                     className="text-center mx-auto"
                                     type="default"
                                 >
-                                    {"Our Vision (Live Demos) "}
+                                    {selectedCharacter ? selectedCharacter.contentText[12] :
+                                    "Our Vision (Live Demos) "
+                                    }
                                 </PageTitle>
                                 <Content
                                     className="text-center"
                                     alignment="center"
                                 >
                                     <p>
-                                        {` We're painting a grand picture – an
+                                        {selectedCharacter ? selectedCharacter.contentText[13] :
+                                        ` We're painting a grand picture – an
                                     interconnected ecosystem of AI agents,
                                     creating harmonious solutions for
                                     multifaceted challenges.`}
