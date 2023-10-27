@@ -8,9 +8,17 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"; // Import Swiper React components
+import useCharacterStore from "@store/charStore";
 import "swiper/css"; // Import Swiper styles
 
 export const Revenue = () => {
+    const {
+        selectedCharacter,
+        setSelectedCharacter,
+        characters,
+        themeImagePaths,
+        setThemeImagePaths
+    } = useCharacterStore();
     const [isInView, setIsInView] = useState(false);
     const [scrollY, setScrollY] = useState(0);
 

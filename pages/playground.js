@@ -264,17 +264,6 @@ export default function Home() {
             }
             // You can do something with the interimTranscript here if you want
         };
-        // Event handler for speech recognition results
-        // recognitionRef.current.onresult = (event) => {
-        //     console.log("event.results", event.results);
-        //     const { transcript } = event.results[event.results.length - 1][0];
-
-        //     // Log the recognition results and update the transcript state
-        //     console.log(event.results);
-        //     setTranscript(
-        //         (prevTranscript) => `${prevTranscript} ${transcript}`
-        //     );
-        // };
 
         // Start the speech recognition
         recognitionRef.current.start();
@@ -837,15 +826,18 @@ export default function Home() {
                                 className="text-center mx-auto"
                                 type="default"
                             >
-                                Understanding AI Agents{" "}
+                                {selectedCharacter ? selectedCharacter.contentText[2] :
+                                "Understanding AI Agents"}
                             </PageTitle>
                             <Content className="text-center" alignment="center">
                                 <p>
-                                    AI agents excel in specialized domains. Yet,
+                                    {selectedCharacter ? selectedCharacter.contentText[3] :
+                                    `AI agents excel in specialized domains. Yet,
                                     akin to a single musician amidst a grand
                                     symphony, their brilliance sometimes needs
-                                    collaboration to reach its pinnacle.
+                                    collaboration to reach its pinnacle.`}
                                 </p>
+                                <br />
                             </Content>
                             <div className="flex flex-row w-full justify-center mb-8">
                                 <span className="font-semibold">
@@ -1107,11 +1099,16 @@ export default function Home() {
                                 className="text-center mx-auto"
                                 type="default"
                             >
-                                Our Journey Ahead – The Roadmap{" "}
+                                {selectedCharacter ? selectedCharacter.contentText[18] :
+                                "Our Journey Ahead – The Roadmap"
+                                }
                             </PageTitle>
 
                             <Content className="text-center" alignment="center">
-                                <p>The future awaits...</p>
+                                <p>
+                                    {selectedCharacter ? selectedCharacter.contentText[19] :
+                                    "The future awaits..." }
+                                </p>
                             </Content>
                             <RoadMap />
                         </SectionContainer>
@@ -1132,12 +1129,14 @@ export default function Home() {
                                 className="text-center mx-auto"
                                 type="default"
                             >
-                                Meet the Maestros - Our Team{" "}
+                                {selectedCharacter ? selectedCharacter.contentText[14] :
+                                "Meet the Maestros - Our Team"}
                             </PageTitle>
                             <Content className="text-center" alignment="center">
                                 <p>
-                                    From AI enthusiasts to business moguls, meet
-                                    the minds sculpting the Elysium dream.
+                                    {selectedCharacter ? selectedCharacter.contentText[15] :
+                                    `From AI enthusiasts to business moguls, meet
+                                    the minds sculpting the Elysium dream.`}
                                 </p>
                             </Content>
 
@@ -1236,10 +1235,12 @@ export default function Home() {
                                 type="default"
                             >
                                 <div id="faq"></div>
-                                Questions? Dive into our FAQ: <br></br>
+                                {selectedCharacter ? selectedCharacter.contentText[16] :
+                                "Questions? Dive into our FAQ: "}
+                                <br></br>
                                 <br></br>
                                 <p className="text-xl font-light">
-                                    {
+                                    {selectedCharacter ? selectedCharacter.contentText[17] :
                                         "Your queries, answered. From our mission to our methods – get the clarity you seek."
                                     }
                                 </p>
