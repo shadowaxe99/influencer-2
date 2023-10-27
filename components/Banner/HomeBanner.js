@@ -96,7 +96,8 @@ export const HomeBanner = () => {
                             loop={true}
                             autoPlay
                             className="mx-auto border-blue-500 border-4 rounded shadow-xl"
-                            loading="lazy"
+                            priority
+                            // loading="lazy"
                         ></video>
                         {/* <Image
                             src="/temple.jpeg"
