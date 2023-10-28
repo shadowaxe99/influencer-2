@@ -62,7 +62,7 @@ const ContentImageData = [
     }
 ];
 
-export const ContentImage = () => {
+export const ContentImage = ( { addAudioRef, removeAudioRef } ) => {
     const {
         selectedCharacter,
         setSelectedCharacter,
@@ -85,7 +85,12 @@ export const ContentImage = () => {
     const handlFlip = (id) => {
         if (typeof window !== "undefined") {
             const flipSound = new Audio("/sounds/swoosh.mp3"); // Make sure to provide the correct path to your audio file
-            flipSound.volume = 0.25;
+            flipSound.volume = 0.1;
+            // addAudioRef(flipSound);
+            // flipSound.addEventListener("ended", () => {
+            //     removeAudioRef(flipSound);
+            // }
+            // );
             flipSound.play();
         }
         setFlippedId(id);

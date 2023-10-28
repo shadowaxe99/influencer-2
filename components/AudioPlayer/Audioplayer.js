@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState, useRef, useEffect } from "react";
 
-const AudioPlayer = () => {
+const AudioPlayer = ( { addAudioRef, removeAudioRef } ) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
     const observerRef = useRef(null);

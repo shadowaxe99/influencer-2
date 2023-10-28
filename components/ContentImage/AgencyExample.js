@@ -88,7 +88,7 @@ const agentTasks = {
     // Add more agents and their tasks here
 };
 
-export const AgencyExample = () => {
+export const AgencyExample = ( { addAudioRef, removeAudioRef } ) => {
     const [agentsRunning, setAgentsRunning] = useState(false);
     const [selectedAgents, setSelectedAgents] = useState([]);
     const [runningAgents, setRunningAgents] = useState([]);
@@ -198,7 +198,10 @@ export const AgencyExample = () => {
                     }`}
                     ref={radioRef}
                 >
-                    <AudioPlayer />
+                    <AudioPlayer 
+                        addAudioRef={addAudioRef}
+                        removeAudioRef={removeAudioRef}
+                    />
                 </div>
             </div>
             <div className="flex flex-col">
