@@ -29,7 +29,6 @@ import IframeContainer from "@components/IframeContainer/IframeContainer";
 import axios from "axios";
 import Draggable from "react-draggable";
 import BubblesSpinner from "@components/BubbleSpinner/BubbleSpinner";
-import TeamChat from "@components/TeamChat/TeamChat";
 import useCharacterStore from "../store/charStore"; // Import Zustand store
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -41,6 +40,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import ChatPage from "@components/TeamChat/PhoneChat";
+import PhoneChatFinal from "@components/TeamChat/Final_PhoneChat";
+import PhoneChat from "@components/TeamChat/Final_Merged_PhoneChat_Part1";
 import { config } from "dotenv";
 import { motion, useAnimation } from "framer-motion";
 import { AgencyExample } from "@components/ContentImage/AgencyExample";
@@ -107,7 +108,34 @@ export default function Home() {
     const [fontFamily, setFontFamily] = useState("");
     const [fontVariable, setFontVariable] = useState("");
     const [letterSpacing, setLetterSpacing] = useState("");
+    const [isMuted, setIsMuted] = useState(false);
+    const [localMute, setLocalMute] = useState(false);
+    const audioRefs = useRef([]);
 
+    const addAudioRef = (audio) => {
+        audioRefs.current.push(audio);
+        // console.log("MUTED OR NOT IN ADD REF: ", localMute)
+        // audio.muted = isMuted;
+    };
+
+    useEffect(() => {
+        audioRefs.current.forEach(audio => {
+            audio.muted = isMuted;
+        });
+    }, [isMuted, addAudioRef]);
+    
+    const removeAudioRef = (audioToRemove) => {
+        audioRefs.current = audioRefs.current.filter(audio => audio !== audioToRemove);
+    };
+
+    const toggleMute = () => {
+        setIsMuted(!isMuted);
+        const allMediaElements = document.querySelectorAll('audio, video');
+        allMediaElements.forEach(media => {
+            media.muted = !isMuted;
+        });
+      };      
+      
     useEffect(() => {
         if (selectedCharacter) {
             setFontFamily(selectedCharacter.fontFamily);
@@ -430,17 +458,26 @@ export default function Home() {
             console.log(characters[0].themeImagePaths);
             setThemeImagePaths(characters[0].themeImagePaths);
             const greetingAudio = new Audio(characters[0].greeting);
+            greetingAudio.muted = isMuted;
+            addAudioRef(greetingAudio);
+            greetingAudio.addEventListener('ended', () => removeAudioRef(greetingAudio));
             greetingAudio.volume = 0.4;
             greetingAudio.play();
             return;
         }
         console.log("selectedCharacter", selectedCharacter);
         const greetingAudio = new Audio(selectedCharacter.greeting);
+        greetingAudio.muted = isMuted;
+        addAudioRef(greetingAudio);
+        greetingAudio.addEventListener('ended', () => removeAudioRef(greetingAudio));
         greetingAudio.volume = 0.4;
         greetingAudio.play();
     }, []);
     useEffect(() => {
         const audio = new Audio("/sounds/dystopia.mp3"); // could use dystopian.mp3 instaed if wanted. It is just longer and covers other sounds
+        audio.muted = isMuted;
+        addAudioRef(audio);
+        audio.addEventListener('ended', () => removeAudioRef(audio));
         audio.volume = 0.012;
         audio.play();
     }, []);
@@ -482,7 +519,10 @@ export default function Home() {
     useEffect(() => {
         const playAudio = () => {
             const audio = new Audio("/sounds/die-cast.mp3");
+            addAudioRef(audio);
+            audio.addEventListener('ended', () => removeAudioRef(audio));
             audio.volume = 0.04;
+            audio.muted = isMuted;
             audio.play();
         };
 
@@ -669,6 +709,9 @@ export default function Home() {
                         </a>
                     </li>
                 </ul>
+            <button onClick={toggleMute} className="mute-button absolute ">
+                {isMuted ? "Unmute" : "Mute"}
+            </button>
             </div>
             <div>
             <div className={`fixed top-10 z-50 left-2 p-4 ${isButlerDismissed ? "" : "hidden"}`}>
@@ -845,23 +888,12 @@ export default function Home() {
                                     Give it a spin!
                                 </span>
                             </div>
-                            <IframeContainer />
-                            {/* <iframe
-                                src="https://elysium-wizard.streamlit.app/~/+/?embed=true#elysium-task-wizard-made-for-you"
-                                style={{
-                                    width: "100%",
-                                    height: "800px",
-                                    border: "none"
-                                    // display: iframeDisplay
-                                }}
-                                autoFocus={false}
-                                scrolling="no"
-                                loading="lazy"
-                                onLoad={(e) => {
-                                    window.scrollTo(0, 0);
-                                    setIframeDisplay("block");
-                                }}
-                            ></iframe> */}
+                            
+                            <IframeContainer 
+                                addAudioRef={addAudioRef}
+                                removeAudioRef={removeAudioRef}
+                            />
+
                         </SectionContainer>
                     </MotionBTTContainer>
                     <MotionBTTContainer
@@ -888,7 +920,11 @@ export default function Home() {
                                 </p>
                             </Content>
 
-                            <ContentImage2 shouldPlayWaves={true} />
+                            <ContentImage2 
+                                shouldPlayWaves={true}
+                                addAudioRef={addAudioRef}
+                                removeAudioRef={removeAudioRef}
+                            />
                         </SectionContainer>
                     </MotionBTTContainer>
                     {/* What is an Agent?*/}
@@ -916,7 +952,10 @@ export default function Home() {
                                     AI Agents 24/7 */}
                                 </p>
                             </Content>
-                            <ContentImage />
+                            <ContentImage 
+                                addAudioRef={addAudioRef}
+                                removeAudioRef={removeAudioRef}
+                            />
                         </SectionContainer>
                     </MotionBTTContainer>
 
@@ -1149,6 +1188,7 @@ export default function Home() {
                             <ChatPage />
                         </SectionContainer>
                     </MotionBTTContainer>
+                    {/* <PhoneChat /> */}
                     {/* Testimonials */}
 
                     {/* Downloadable Files*/}

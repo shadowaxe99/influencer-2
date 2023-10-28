@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const IframeContainer = () => {
+const IframeContainer = ( { addAudioRef, removeAudioRef } ) => {
     // const [showDemoAgent, setShowDemoAgent] = useState(false);
     const ref = useRef(null);
     const [areDoorsOpen, setAreDoorsOpen] = useState(false);
@@ -50,6 +50,10 @@ const IframeContainer = () => {
             // Play close sound
             if (typeof window !== "undefined") {
                 const flipSound = new Audio("/sounds/door-close.mp3"); // assuming you have a door close sound effect
+                addAudioRef(flipSound);
+                flipSound.addEventListener("ended", () => {
+                    removeAudioRef(flipSound);
+                });
                 flipSound.play();
             }
         } else {
@@ -63,13 +67,21 @@ const IframeContainer = () => {
             flipSound.currentTime = 0;
             flipSound.volume = 0.25;
             flipSound.playbackRate = 1;
+            addAudioRef(flipSound);
+            flipSound.addEventListener("ended", () => {
+                removeAudioRef(flipSound);
+            });
             flipSound.play();
+            const agentStart = new Audio("/sounds/agent-opened.mp3");
+            agentStart.volume = 0.15;
+            addAudioRef(agentStart);
+            agentStart.addEventListener("ended", () => {
+                removeAudioRef(agentStart);
+            });
 
             setTimeout(() => {
                 setAreDoorsOpen(true);
                 document.body.style.overflow = "";
-                const agentStart = new Audio("/sounds/agent-opened.mp3");
-                agentStart.volume = 0.15;
                 agentStart.play();
             }, 3000);
         }

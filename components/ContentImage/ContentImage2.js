@@ -25,7 +25,7 @@ const ContentImageData = [
     // }
 ];
 
-export const ContentImage2 = ({ shouldPlayWaves }) => {
+export const ContentImage2 = ({ shouldPlayWaves, addAudioRef, removeAudioRef }) => {
     const [scrollY, setScrollY] = useState(0);
     const [hoveredId, setHoveredId] = useState(null);
     const [audio, setAudio] = useState(null); // Store the audio object
@@ -43,6 +43,10 @@ export const ContentImage2 = ({ shouldPlayWaves }) => {
                     newAudio.volume = 0.07; // Set volume to 50%
 
                     setAudio(newAudio);
+                    addAudioRef(newAudio);
+                    newAudio.addEventListener("ended", () => {
+                        removeAudioRef(newAudio);
+                    });
 
                     newAudio.play();
                 } else {

@@ -43,10 +43,8 @@ export const ContentImage3 = () => {
             if (action === "play") {
                 video.play();
                 video.volume = 0.25;
-                video.muted = false;
             } else if (action === "pause") {
                 video.pause();
-                video.muted = true;
             }
         }
     };
@@ -147,7 +145,7 @@ export const ContentImage3 = () => {
                             src={demoTab.image}
                             width={512}
                             height={512}
-                            muted
+                            // muted
                             preload="metadata"
                             loop
                             playsInline={true}
