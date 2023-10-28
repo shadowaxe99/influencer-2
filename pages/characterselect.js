@@ -19,11 +19,16 @@ const CharacterSelect = () => {
     }
     const audio = new Audio(soundPath);
     setCurrentSound(audio);
+    audio.volume = 0.4;
     audio.play();
   };
 
   const stopHackSound = (index) => {
     setSelectedCharacter(characters[index]);
+    if (currentSound) {
+      currentSound.pause();
+      currentSound.currentTime = 0;
+    }
     router.push('/playground');
   };
 
@@ -57,7 +62,11 @@ const CharacterSelect = () => {
         <p className="text-2xl mb-6 text-neon-green animate__animated animate__fadeInUp">Let Your AI Knowledge Guide Your Choice</p>
         <div className="grid grid-cols-4 gap-6">
           {characters.map((character, index) => (
-            <div className="flex flex-col items-center group card animate__animated animate__zoomIn hover-effect">
+            <div className="flex flex-col items-center group card animate__animated animate__zoomIn hover-effect"
+            onMouseEnter={() => playGreetingSound(character.sound)}
+            onClick={() => stopHackSound(index)}
+            style={{cursor: 'pointer'}}
+            >
               <div className="character-image-container"
                    style={{
                     height: "100px",
@@ -68,8 +77,7 @@ const CharacterSelect = () => {
                   alt={character.name} 
                   height={100} 
                   width={100} 
-                  className="rounded-full transform transition-all duration-300 ease-in-out" 
-                  onMouseEnter={() => playGreetingSound(character.greeting_sound)} 
+                  className="rounded-full transform transition-all duration-300 ease-in-out"
                   loading="lazy"
                   objectFit="fill"
                 />
