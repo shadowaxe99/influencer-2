@@ -101,7 +101,8 @@ export default function Home() {
     const [isMobile, setIsMobile] = useState(false);
     const [files, setFiles] = useState([
         "ELYSIUM_INNOVATIONS_DECK.pdf",
-        "Elysium_Business_Plan.pdf"
+        "Elysium_Business_Plan.pdf",
+        "Elysium_Innovations_Financial_Model.xlsx",
     ]);
     const [fontFamily, setFontFamily] = useState("");
     const [fontVariable, setFontVariable] = useState("");
