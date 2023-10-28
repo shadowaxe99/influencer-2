@@ -36,7 +36,9 @@ import {
     faInfo,
     faTimes,
     faMicrophone,
-    faQuestionCircle
+    faQuestionCircle,
+    faVolumeUp,
+    faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import ChatPage from "@components/TeamChat/PhoneChat";
@@ -709,9 +711,6 @@ export default function Home() {
                         </a>
                     </li>
                 </ul>
-            <button onClick={toggleMute} className="mute-button absolute ">
-                {isMuted ? "Unmute" : "Mute"}
-            </button>
             </div>
             <div>
             <div className={`fixed top-10 z-50 left-2 p-4 ${isButlerDismissed ? "" : "hidden"}`}>
@@ -784,7 +783,7 @@ export default function Home() {
                                 <button
                                     className="border bg-blue-500 px-2 text-white w-10 h-10 rounded-full"
                                     onClick={handleShowVoiceResponse}>
-                                    {/* Replace with your image */}
+                                    <FontAwesomeIcon icon={faMicrophone} width={24} height={24} />
                                 </button>
 
                                 <button
@@ -792,6 +791,13 @@ export default function Home() {
                                     onClick={handleDismissButler}>
                                     <FontAwesomeIcon icon={faTimes} width={24} height={24} />
                                 </button>
+
+                                <button 
+                                    className="border bg-green-500 text-white px-2 h-10 w-10 rounded-full"
+                                    onClick={toggleMute}>
+                                    <FontAwesomeIcon icon={ isMuted ? faVolumeUp : faVolumeMute} width={24} height={24} />
+                                </button>
+
                             </>
                         )}
                     </div>
