@@ -795,7 +795,7 @@ export default function Home() {
                                 <button 
                                     className="border bg-green-500 text-white px-2 h-10 w-10 rounded-full"
                                     onClick={toggleMute}>
-                                    <FontAwesomeIcon icon={ isMuted ? faVolumeUp : faVolumeMute} width={24} height={24} />
+                                    <FontAwesomeIcon icon={ isMuted ? faVolumeMute : faVolumeUp} width={24} height={24} />
                                 </button>
 
                             </>
