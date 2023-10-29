@@ -33,7 +33,6 @@ export const HomeBanner = () => {
     }
     , []);
 
-    console.log(themeImagePaths[0]);
     useEffect(() => {
         const videoElement = document.getElementById("myVideo");
         videoElement.playbackRate = 0.5;

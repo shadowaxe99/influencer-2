@@ -63,7 +63,6 @@ export const ContentImage3 = () => {
                     const videoTop =
                         videoContainer.getBoundingClientRect().top + scrollY;
                     const videoBottom = videoTop + videoRef.clientHeight;
-                    console.log("Indices", index, activeTabIndexRef.current);
                     if (
                         videoTop > scrollY - videoRef.clientHeight &&
                         videoBottom < scrollY + windowHeight &&

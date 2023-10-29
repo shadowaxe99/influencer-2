@@ -103,7 +103,6 @@ const ChatBubble = ({ inputText }) => {
         const ninthSlide = document.getElementById("ninthSlide");
         const desktop = document.getElementById("desktop");
         const web = document.getElementById("web");
-        console.log("firstslide", firstSlide);
         observer.observe(firstSlide);
         observer.observe(secondSlide);
         observer.observe(thirdSlide);
@@ -145,7 +144,6 @@ const ChatBubble = ({ inputText }) => {
         console.log("character id", character.id);
         switch (character.id) {
             case "0":
-                console.log("charceter id === 0");
                 setFontFamily("font-runescape");
                 setFontVariable(runescapePlain.variable);
                 setTextSize("text-xl");
@@ -255,8 +253,6 @@ const ChatBubble = ({ inputText }) => {
         if (selectedCharacter) {
             determineCharacterFont(selectedCharacter);
         }
-        console.log("fontfamily", fontFamily);
-        console.log("font variable", fontVariable);
     }, []);
 
     // useEffect(() => {

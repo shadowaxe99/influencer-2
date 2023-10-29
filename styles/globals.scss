@@ -2982,6 +2982,32 @@ iframe {
     opacity: 0;
 }
 
+.App {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  .boxes {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .box {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .box h2 {
+    margin-top: 0;
+  }
+
 @keyframes agentPath1 {
     0% {
         top: 10%;
