@@ -618,8 +618,7 @@ export default function Home() {
 
     return (
         <Layout className="" toggleSidebar={toggleSidebar}>
-            <div className={`${fontFamily} ${fontVariable} ${letterSpacing}`}>
-            <div className="toggle-sidebar" onClick={toggleSidebar}>
+            <div className={`${fontFamily} ${fontVariable} ${letterSpacing}`}>            <div className="toggle-sidebar" onClick={toggleSidebar}>
                 <div className="bar"></div>
                 <div className="bar"></div>
                 <div className="bar"></div>
@@ -713,17 +712,20 @@ export default function Home() {
                 </ul>
             </div>
             <div>
-            <div className={`fixed top-10 z-50 left-2 p-4 ${isButlerDismissed ? "" : "hidden"}`}>
+            <div className={`fixed top-10 z-50 left-2 p-4 ${isButlerDismissed ? "" : "hidden"}`}
+            >
                 <button
                     className="bg-green-500 text-white rounded p-2 shadow-md"
-                    onClick={handleButlerSummoned}>
+                    onClick={handleButlerSummoned}
+                >
                     Call Butler
                 </button>
             </div>
 
             <Draggable>
                 <div
-                    className={`fixed top-52 left-10 p-4 rounded-lg flex flex-col items-center z-50 ${isButlerDismissed ? "hidden" : "block"}`}>
+                    className={`fixed top-52 left-10 p-4 rounded-lg flex flex-col items-center z-50 ${isButlerDismissed ? "hidden" : "block"}`}
+                >
                     {showVoiceResponse && (
                         <div className="bg-white voice-response-box">
                             <div className="text-black p pt-2 flex flex-row space-x-4 mb-2">
@@ -746,7 +748,8 @@ export default function Home() {
                             <div className="overflow-y-scroll w-[90%] max-h-[500px] h-full rounded border border-gray-500 p-2">
                                 {chatHistory.length > 0 &&
                                     chatHistory.filter(e => e.role !== "system").map((e, i) => (
-                                        <p key={i} className={`w-full p-2 mb-2 mt-2 rounded-lg text-black ${e.role === "user" ? "bg-green-700 text-white w-2/5" : "bg-gray-300 w-2/5"}`}>
+                                        <p key={i} className={`w-full p-2 mb-2 mt-2 rounded-lg text-black ${e.role === "user" ? "bg-green-700 text-white w-2/5" : "bg-gray-300 w-2/5"}`}
+                                        >
                                             {e.content}
                                         </p>
                                     ))}
@@ -756,20 +759,23 @@ export default function Home() {
                             <div className="bottom-buttons m-2">
                                 <button
                                     onClick={handleDismissVoiceResponseBox}
-                                    className="border p-1 w-2/5 mx-2 text-sm bg-gray-300 text-black rounded">
+                                    className="border p-1 w-2/5 mx-2 text-sm bg-gray-300 text-black rounded"
+                                >
                                     Dismiss
                                 </button>
 
                                 {isRecording ? (
                                     <button
                                         onClick={handleSubmitVoice}
-                                        className="border p-2 w-2/5 text-sm mx-2 rounded bg-green-500 text-white">
+                                        className="border p-2 w-2/5 text-sm mx-2 rounded bg-green-500 text-white"
+                                    >
                                         Done
                                     </button>
                                 ) : (
                                     <button
                                         onClick={handleAskAgain}
-                                        className="border p-1 w-2/5 mx-2 text-sm bg-blue-500 text-white rounded">
+                                        className="border p-1 w-2/5 mx-2 text-sm bg-blue-500 text-white rounded"
+                                    >
                                         Ask Another Question
                                     </button>
                                 )}
@@ -782,19 +788,22 @@ export default function Home() {
                             <>
                                 <button
                                     className="border bg-blue-500 px-2 text-white w-10 h-10 rounded-full"
-                                    onClick={handleShowVoiceResponse}>
+                                    onClick={handleShowVoiceResponse}
+                                >
                                     <FontAwesomeIcon icon={faMicrophone} width={24} height={24} />
                                 </button>
 
                                 <button
                                     className="border bg-red-500 text-white px-2 h-10 w-10 rounded-full"
-                                    onClick={handleDismissButler}>
+                                    onClick={handleDismissButler}
+                                >
                                     <FontAwesomeIcon icon={faTimes} width={24} height={24} />
                                 </button>
 
                                 <button 
                                     className="border bg-green-500 text-white px-2 h-10 w-10 rounded-full"
-                                    onClick={toggleMute}>
+                                    onClick={toggleMute}
+                                >
                                     <FontAwesomeIcon icon={ isMuted ? faVolumeMute : faVolumeUp} width={24} height={24} />
                                 </button>
 
@@ -949,7 +958,7 @@ export default function Home() {
                                 className="text-center mx-auto"
                                 type="default"
                             >
-                                Addressing Key Challenges Elysium OS{" "}
+                                Addressing Key Challenges Elysium OS 
                             </PageTitle>
                             <Content className="text-center" alignment="center">
                                 <p>
@@ -972,13 +981,15 @@ export default function Home() {
                         <SectionContainer className="feature-tabs">
                             <div id="fifthSlide"></div>
                             <BadgeGroup alignment="center">
-                                <BadgeMessage>Eyes on the stars</BadgeMessage>
+                                <BadgeMessage>
+                                    Eyes on the stars
+                                </BadgeMessage>
                             </BadgeGroup>
                             <PageTitle
                                 className="text-center mx-auto"
                                 type="default"
                             >
-                                {"Our Offerings"}{" "}
+                                {"Our Offerings"} 
                             </PageTitle>
                             <Content className="text-center" alignment="center">
                                 <p>Our Main Product Offerings</p>
@@ -1037,51 +1048,23 @@ export default function Home() {
                     <MotionBTTContainer
                         transition={{ delay: 0.2, duration: 0.5 }}
                     >
-                        <SectionContainer
-                            id="features"
-                            className="features md:mt-12"
-                        >
+                        <SectionContainer id="features" className="features md:mt-12">
                             <div id="seventhSlide"></div>
                             <BadgeGroup alignment="center">
-                                <BadgeMessage>Love conquers all</BadgeMessage>
+                                <BadgeMessage>
+                                    Love conquers all
+                                </BadgeMessage>
                             </BadgeGroup>
                             <PageTitle
                                 className="text-center mx-auto"
                                 type="default"
                             >
-                                Developers!{" "}
+                                Developers! 
                             </PageTitle>
                             <Content className="text-center" alignment="center">
                                 <p>Building for the builders.</p>
                             </Content>
                             <ContentImage4 />
-                        </SectionContainer>
-                    </MotionBTTContainer>
-
-                    {/* demos */}
-                    <MotionBTTContainer
-                        transition={{ delay: 0.2, duration: 0.5 }}
-                    >
-                        <SectionContainer id="" className="mb-12">
-                            <SectionContainer id="features" className="mb-12">
-                                <div></div>
-
-                                <PageTitle
-                                    className="text-center mx-auto"
-                                    type="default"
-                                >
-                                    {"Cutting costs in the real world"}
-                                </PageTitle>
-                                <Content
-                                    className="text-center"
-                                    alignment="center"
-                                >
-                                    <p>
-                                        {`Accomplish your tasks without the overhead and cost of hiring real assistants.`}
-                                    </p>
-                                </Content>
-                                <AgencyExample />
-                            </SectionContainer>
                         </SectionContainer>
                     </MotionBTTContainer>
 
