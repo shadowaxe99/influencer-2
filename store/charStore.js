@@ -159,7 +159,7 @@ const useCharacterStore = create((set) => ({
                 "We're operational on Web & Desktop, and we're coming to Mobile. Stay tuned, Agent.",
                 "👥 Meet the Maestros: The Team Behind the Curtain 👥",
                 "From tech geniuses to business strategists, we're the ones making the calls.",
-                ":❓ FAQs: Get Your Intel Here ❓",
+                "❓ FAQs: Get Your Intel Here ❓",
                 "You've got questions, we've got answers. No need for an interrogation room.",
                 "🌎 To Elysium and Beyond: The Roadmap 🌎",
                 "We've got big plans, and you're a part of them. Get ready for the next phase.",
