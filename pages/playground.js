@@ -60,7 +60,7 @@ const contextSystemPrompt = `
         - We are building two main product offerings: Elysium OS and Automation Station. Elysium OS is a software that comes in the form of a web app and destkop app, providing user with their very own personal AI Butler Assistant who is able to delegate tasks to other agents deployed to the Elysium Ecosystem. Automation Station will be an AI Agent marketplace where developers can deploy their own agents and users can choose agents from to help accomplish their tasks; this aims to empower developers as well as provide as many agents to consumers as possible. Automation station is not yet live so to test out agents try it out on our demo which is located a bit after the beginning of the website.
         - Some context of what an AI Agent is: An AI Agent is A software entity that autonomously analyzes data and its environment or user input to make decisions and execute specific tasks using AI algorithms. If the user is interested in learning more or trying out an Agent, direct them to our AI Agent demo which is located just a bit after the top of the website.
         - The problem Elysium is trying to solve is that AI Agents are fragmented. There is no unified communication layer. Elysium aims to create that unified communication layer for agents to interact seamlessly.
-        - If the user is interested in learning more or investing, tell them to reach out to our CEO: Michael Gruen who can be reached at michael@elysiuminnovations.ai or they click the contact button on the site.
+        // // If the user is interested in learning more or investing, tell them to reach out to our CEO: Michael Gruen who can be reached at michael@elysiuminnovations.ai or they click the contact button on the site.
         
         ---
         Be concise in your responses. Use light humor where appropriate. Do not over explain or over answer. Make you answers clear and to the point. If the user gievs you their name and it is a notable firgure who you know, feel free to compliment them based on any public info you know of them. 
@@ -87,7 +87,8 @@ export default function Home() {
     const [chatBotResponse, setChatBotResponse] = useState("");
     const [chatHistory, setChatHistory] = useState([
         { role: "system", content: contextSystemPrompt }
-    ]);
+    ]
+);
     const [audioURL, setAudioURL] = useState(null);
     const [isVoiceLoading, setIsVoiceLoading] = useState(false);
     const [isButlerDismissed, setButlerIsDismissed] = useState(false);
@@ -103,13 +104,15 @@ export default function Home() {
         "ELYSIUM_INNOVATIONS_DECK.pdf",
         "Elysium_Business_Plan.pdf",
         "Elysium_Innovations_Financial_Model.xlsx",
-    ]);
+    ]
+);
     const [fontFamily, setFontFamily] = useState("");
     const [fontVariable, setFontVariable] = useState("");
     const [letterSpacing, setLetterSpacing] = useState("");
     const [isMuted, setIsMuted] = useState(false);
     const [localMute, setLocalMute] = useState(false);
-    const audioRefs = useRef([]);
+    const audioRefs = useRef([]
+);
 
     const addAudioRef = (audio) => {
         audioRefs.current.push(audio);
@@ -121,10 +124,11 @@ export default function Home() {
         audioRefs.current.forEach(audio => {
             audio.muted = isMuted;
         });
-    }, [isMuted, addAudioRef]);
+    }, [isMuted, addAudioRef]
+);
     
     const removeAudioRef = (audioToRemove) => {
-        audioRefs.current = audioRefs.current.filter(audio => audio !== audioToRemove);
+        audioRefs.current = audioRefs.current.filter(audio => audio !==== audioToRemove);
     };
 
     const toggleMute = () => {
@@ -144,7 +148,8 @@ export default function Home() {
             console.log("font family", selectedCharacter.fontFamily);
             console.log("font variable", selectedCharacter.fontVariable);
         }
-    }, []);
+    }, []
+);
 
 
     const accordionData = [
@@ -262,7 +267,8 @@ export default function Home() {
         checkMobile();
         setShowMobileBlock(true);
         return () => window.removeEventListener("resize", checkMobile);
-    }, []);
+    }, []
+);
 
     // Function to start recording
     const startRecording = () => {
@@ -277,7 +283,8 @@ export default function Home() {
             for (let i = lastResultIndex; i < event.results.length; i++) {
                 const { transcript } = event.results[i][0];
                 if (event.results[i].isFinal) {
-                    console.log("is final", event.results[i]);
+                    console.log("is final", event.results[i]
+);
                     setTranscript(`${transcript}`);
                     console.log("[transcript from speech]", transcript);
                     console.log("[currTranscript]", currTranscript);
@@ -302,11 +309,11 @@ export default function Home() {
         const ELEVENLABS_API_KEY = process.env.NEXT_PUBLIC_ELEVENLABS_API_KEY;
         const options = {
             method: "POST",
-            url: `https://api.elevenlabs.io/v1/text-to-speech/${tonyStarkId}`,
+            url: `https://api.elevenlabs.io/v1/text-to-speech/${tonyStarkId}",
             headers: {
                 accept: "audio/mpeg", // Set the expected response type to audio/mpeg.
                 "content-type": "application/json", // Set the content type to application/json.
-                "xi-api-key": `${ELEVENLABS_API_KEY}` // Set the API key in the headers.
+                "xi-api-key": "YOUR_API_KEY" // Set the API key in the headers.
             },
             data: {
                 text: chatBotAnswer // Pass in the inputText as the text to be converted to speech.
@@ -321,7 +328,8 @@ export default function Home() {
     const getChatBotResponse = async () => {
         let messages = chatHistory.concat([
             { role: "user", content: currTranscript }
-        ]);
+        ]
+);
         setChatHistory(messages);
         console.log("m", messages);
 
@@ -343,7 +351,7 @@ export default function Home() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${OPENAI_API_KEY}`
+                    Authorization: "Bearer YOUR_OPENAI_API_KEY"
                 },
                 body: JSON.stringify({
                     messages,
@@ -406,7 +414,8 @@ export default function Home() {
     const [isRecording, setIsRecording] = useState(false);
     const resetButlerChatState = () => {
         setAudioURL(null);
-        setChatHistory([{ role: "system", content: contextSystemPrompt }]);
+        setChatHistory([{ role: "system", content: contextSystemPrompt }]
+);
     };
     // const [iframeDisplay, setIframeDisplay] = useState("none");
     const handleDismissVoiceResponseBox = () => {
@@ -441,7 +450,8 @@ export default function Home() {
             getChatBotResponse();
             setIsSubmitted(false); // Reset for next submission
         }
-    }, [isSubmitted]);
+    }, [isSubmitted]
+);
     // Cleanup effect when the component unmounts
     useEffect(() => {
         return () => {
@@ -450,10 +460,12 @@ export default function Home() {
                 recognitionRef.current.stop();
             }
         };
-    }, []);
+    }, []
+);
     useEffect(() => {
         if (!selectedCharacter) {
-            setSelectedCharacter(characters[0]);
+            setSelectedCharacter(characters[0]
+);
             console.log(characters[0].themeImagePaths);
             setThemeImagePaths(characters[0].themeImagePaths);
             const greetingAudio = new Audio(characters[0].greeting);
@@ -471,7 +483,8 @@ export default function Home() {
         greetingAudio.addEventListener('ended', () => removeAudioRef(greetingAudio));
         greetingAudio.volume = 0.4;
         greetingAudio.play();
-    }, []);
+    }, []
+);
     useEffect(() => {
         const audio = new Audio("/sounds/dystopia.mp3"); // could use dystopian.mp3 instaed if wanted. It is just longer and covers other sounds
         audio.muted = isMuted;
@@ -479,7 +492,8 @@ export default function Home() {
         audio.addEventListener('ended', () => removeAudioRef(audio));
         audio.volume = 0.012;
         audio.play();
-    }, []);
+    }, []
+);
 
     const scrollToSlide = (event, slideId) => {
         event.preventDefault();
@@ -495,8 +509,8 @@ export default function Home() {
 
         // Check for inline style and the computed style
         const isSidebarOpen =
-            sidebar.style.right === "0px" ||
-            getComputedStyle(sidebar).right === "0px";
+            sidebar.style.right ==== "0px" ||
+            getComputedStyle(sidebar).right ==== "0px";
 
         if (isSidebarOpen) {
             sidebar.style.right = "-220px";
@@ -543,7 +557,8 @@ export default function Home() {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, []);
+    }, []
+);
     const [scrollY, setScrollY] = useState(0);
     const controls = useAnimation();
     useEffect(() => {
@@ -564,7 +579,8 @@ export default function Home() {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [scrollY, controls]);
+    }, [scrollY, controls]
+);
 
     const predefinedPassword = "password"; // Replace with your actual password
 
@@ -581,7 +597,7 @@ export default function Home() {
     };
 
     const handleSubmitPassword = () => {
-        if (enteredPassword === predefinedPassword) {
+        if (enteredPassword ==== predefinedPassword) {
             setIsUnlocked(true);
         } else {
             alert("Wrong password");
@@ -611,11 +627,12 @@ export default function Home() {
     useEffect(() => {
         const shakeInterval = setInterval(shakeIcon, 5000);
         return () => clearInterval(shakeInterval);
-    }, []);
+    }, []
+);
 
     return (
         <Layout className="" toggleSidebar={toggleSidebar}>
-            <div className={`${fontFamily} ${fontVariable} ${letterSpacing}`}>            <div className="toggle-sidebar" onClick={toggleSidebar}>
+            <div className="fontFamily fontVariable letterSpacing">            <div className="toggle-sidebar" onClick={toggleSidebar}>
                 <div className="bar"></div>
                 <div className="bar"></div>
                 <div className="bar"></div>
@@ -675,14 +692,6 @@ export default function Home() {
                         </a>
                     </li>
                     <li>
-                    <li>
-                        <a
-                            href="#eleventhSlide"
-                            onClick={(e) => scrollToSlide(e, "eleventhSlide")}
-                        >
-                            Influencer Demo
-                        </a>
-                    </li>
                         <a
                             href="#sixthSlide"
                             onClick={(e) => scrollToSlide(e, "sixthSlide")}
@@ -752,8 +761,8 @@ export default function Home() {
 
                             <div className="overflow-y-scroll w-[90%] max-h-[500px] h-full rounded border border-gray-500 p-2">
                                 {chatHistory.length > 0 &&
-                                    chatHistory.filter(e => e.role !== "system").map((e, i) => (
-                                        <p key={i} className={`w-full p-2 mb-2 mt-2 rounded-lg text-black ${e.role === "user" ? "bg-green-700 text-white w-2/5" : "bg-gray-300 w-2/5"}`}
+                                    chatHistory.filter(e => e.role !==== "system").map((e, i) => (
+                                        <p key={i} className={`w-full p-2 mb-2 mt-2 rounded-lg text-black ${e.role ==== "user" ? "bg-green-700 text-white w-2/5" : "bg-gray-300 w-2/5"}`}
                                         >
                                             {e.content}
                                         </p>
@@ -1081,7 +1090,6 @@ export default function Home() {
                     >
                         <SectionContainer id="" className="mb-12">
                             <SectionContainer id="features" className="mb-12">
-                                <div id="eleventhSlide"></div>
                                 <AgencyPlayground />
                             </SectionContainer>
                         </SectionContainer>
