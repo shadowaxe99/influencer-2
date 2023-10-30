@@ -675,6 +675,14 @@ export default function Home() {
                         </a>
                     </li>
                     <li>
+                    <li>
+                        <a
+                            href="#eleventhSlide"
+                            onClick={(e) => scrollToSlide(e, "eleventhSlide")}
+                        >
+                            Influencer Demo
+                        </a>
+                    </li>
                         <a
                             href="#sixthSlide"
                             onClick={(e) => scrollToSlide(e, "sixthSlide")}
@@ -1073,6 +1081,7 @@ export default function Home() {
                     >
                         <SectionContainer id="" className="mb-12">
                             <SectionContainer id="features" className="mb-12">
+                                <div id="eleventhSlide"></div>
                                 <AgencyPlayground />
                             </SectionContainer>
                         </SectionContainer>
