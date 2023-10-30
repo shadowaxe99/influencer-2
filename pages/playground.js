@@ -29,7 +29,7 @@ import IframeContainer from "@components/IframeContainer/IframeContainer";
 import axios from "axios";
 import Draggable from "react-draggable";
 import BubblesSpinner from "@components/BubbleSpinner/BubbleSpinner";
-import useCharacterStore from "../store/charStore"; // Import Zustand store
+import useCharacterStore from "../store/charStore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCaretDown,
@@ -42,13 +42,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import ChatPage from "@components/TeamChat/PhoneChat";
-import PhoneChatFinal from "@components/TeamChat/Final_PhoneChat";
-import PhoneChat from "@components/TeamChat/Final_Merged_PhoneChat_Part1";
 import { config } from "dotenv";
 import { motion, useAnimation } from "framer-motion";
 import { AgencyExample } from "@components/ContentImage/AgencyExample";
-// import AgencyPlayground from "@components/AgencyPlayground/AgencyPlayground";
-import AgencyPlayground from "@components/AgencyPlayground/Final_Integrated_AgencyPlayground";
+import AgencyPlayground from "@components/AgencyPlayground/AgencyPlayground";
 import { Chart } from "chart.js";
 import { CategoryScale, LinearScale } from "chart.js/auto";
 import { v4 as uuid } from "uuid";
@@ -942,6 +939,7 @@ export default function Home() {
                             />
                         </SectionContainer>
                     </MotionBTTContainer>
+
                     {/* What is an Agent?*/}
                     {/* Features */}
                     <MotionBTTContainer
@@ -958,7 +956,8 @@ export default function Home() {
                                 className="text-center mx-auto"
                                 type="default"
                             >
-                                Addressing Key Challenges Elysium OS 
+                                
+                                {"Addressing Key Challenges Elysium OS "}
                             </PageTitle>
                             <Content className="text-center" alignment="center">
                                 <p>
