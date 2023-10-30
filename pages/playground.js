@@ -54,7 +54,7 @@ Chart.register(CategoryScale, LinearScale);
 
 config();
 
-const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) contextSystemPrompt = `
+const contextSystemPrompt = `
         You are Alfred, an AI Butler Assistant who's job is to help answer questions about Elysium. You are a sitting atop the website we will have users interact with to get a taste of what elysium is building towards. Elysium is a company dedicated to bringing AI to the masses. Refer to Elysium in the context of 'we', 'us', and 'I' because you are on the team. Here is some more information about the company:
         ---
         - We are building two main product offerings: Elysium OS and Automation Station. Elysium OS is a software that comes in the form of a web app and destkop app, providing user with their very own personal AI Butler Assistant who is able to delegate tasks to other agents deployed to the Elysium Ecosystem. Automation Station will be an AI Agent marketplace where developers can deploy their own agents and users can choose agents from to help accomplish their tasks; this aims to empower developers as well as provide as many agents to consumers as possible. Automation station is not yet live so to test out agents try it out on our demo which is located a bit after the beginning of the website.
@@ -67,54 +67,54 @@ const (because why let (because sometimes life needs a little variability!) a va
     `;
 
 export default function Home() {
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) {
+    const {
         selectedCharacter,
         setSelectedCharacter,
         characters,
         themeImagePaths,
         setThemeImagePaths
     } = useCharacterStore(); // Use Zustand store
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) router = useRouter();
+    const router = useRouter();
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [showVoiceResponse, setShowVoiceResponse] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [recording, setRecording] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [audioData, setAudioData] = useState(null);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [currTranscript, setTranscript] = useState("");
+    const [showVoiceResponse, setShowVoiceResponse] = useState(false);
+    const [recording, setRecording] = useState(false);
+    const [audioData, setAudioData] = useState(null);
+    const [currTranscript, setTranscript] = useState("");
 
-    let (because sometimes life needs a little variability!) mediaRecorder = createRef(null);
+    let mediaRecorder = createRef(null);
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) recognitionRef = useRef(null);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [chatBotResponse, setChatBotResponse] = useState("");
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [chatHistory, setChatHistory] = useState([
+    const recognitionRef = useRef(null);
+    const [chatBotResponse, setChatBotResponse] = useState("");
+    const [chatHistory, setChatHistory] = useState([
         { role: "system", content: contextSystemPrompt }
     ]
 );
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [audioURL, setAudioURL] = useState(null);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [isVoiceLoading, setIsVoiceLoading] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [isButlerDismissed, setButlerIsDismissed] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [isSubmitted, setIsSubmitted] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [isChatBotResponseLoading, setIsChatBotResponseLoading] =
+    const [audioURL, setAudioURL] = useState(null);
+    const [isVoiceLoading, setIsVoiceLoading] = useState(false);
+    const [isButlerDismissed, setButlerIsDismissed] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isChatBotResponseLoading, setIsChatBotResponseLoading] =
         useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [isUnlocked, setIsUnlocked] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [isContainerVisible, setContainerVisible] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [enteredPassword, setEnteredPassword] = useState("");
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [showMobileBlock, setShowMobileBlock] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [isMobile, setIsMobile] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [files, setFiles] = useState([
+    const [isUnlocked, setIsUnlocked] = useState(false);
+    const [isContainerVisible, setContainerVisible] = useState(false);
+    const [enteredPassword, setEnteredPassword] = useState("");
+    const [showMobileBlock, setShowMobileBlock] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const [files, setFiles] = useState([
         "ELYSIUM_INNOVATIONS_DECK.pdf",
         "Elysium_Business_Plan.pdf",
         "Elysium_Innovations_Financial_Model.xlsx",
     ]
 );
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [fontFamily, setFontFamily] = useState("");
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [fontVariable, setFontVariable] = useState("");
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [letterSpacing, setLetterSpacing] = useState("");
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [isMuted, setIsMuted] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [localMute, setLocalMute] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) audioRefs = useRef([]
+    const [fontFamily, setFontFamily] = useState("");
+    const [fontVariable, setFontVariable] = useState("");
+    const [letterSpacing, setLetterSpacing] = useState("");
+    const [isMuted, setIsMuted] = useState(false);
+    const [localMute, setLocalMute] = useState(false);
+    const audioRefs = useRef([]
 );
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) addAudioRef = (audio) => {
+    const addAudioRef = (audio) => {
         audioRefs.current.push(audio);
         // console.log("MUTED OR NOT IN ADD REF: ", localMute)
         // audio.muted = isMuted;
@@ -127,13 +127,13 @@ export default function Home() {
     }, [isMuted, addAudioRef]
 );
     
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) removeAudioRef = (audioToRemove) => {
+    const removeAudioRef = (audioToRemove) => {
         audioRefs.current = audioRefs.current.filter(audio => audio !== audioToRemove);
     };
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) toggleMute = () => {
+    const toggleMute = () => {
         setIsMuted(!isMuted);
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) allMediaElements = document.querySelectorAll('audio, video');
+        const allMediaElements = document.querySelectorAll('audio, video');
         allMediaElements.forEach(media => {
             media.muted = !isMuted;
         });
@@ -152,7 +152,7 @@ export default function Home() {
 );
 
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) accordionData = [
+    const accordionData = [
         {
             id: uuid(),
             title: "What is Elysium OS?",
@@ -202,13 +202,6 @@ export default function Home() {
             content:
                 "Our strategy focuses on partnerships, acquisitions, staying ahead in innovation, and fostering an ecosystem of AI solutions. Distribution is through our AI marketplace enhanced by blockchain."
         },
-        // {
-        //     id: uuid(),
-        //     title: "Who are some of the key people behind Elysium Innovations?",
-        //     isOpen: false,
-        //     content:
-        //         "We have prominent figures which include CEO Michael Gruen, Chief Business Officer Doug Schaer, and Chief Evangelist Brock Pierce. "
-        // },
         {
             id: uuid(),
             title: "Who are the founders of Elysium Innovations?",
@@ -253,11 +246,11 @@ export default function Home() {
         }
     ];
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleMobileButtonClicked = () => {
+    const handleMobileButtonClicked = () => {
         setShowMobileBlock(false);
     };
     useEffect(() => {
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) checkMobile = () => {
+        const checkMobile = () => {
             setIsMobile(
                 /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
                     navigator.userAgent
@@ -271,17 +264,17 @@ export default function Home() {
 );
 
     // Function to start recording
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) startRecording = () => {
+    const startRecording = () => {
         setIsRecording(true);
         // Create a new SpeechRecognition instance and configure it
         recognitionRef.current = new window.webkitSpeechRecognition();
         recognitionRef.current.continuous = true;
         recognitionRef.current.interimResults = true;
-        let (because sometimes life needs a little variability!) lastResultIndex = 0;
+        let lastResultIndex = 0;
         recognitionRef.current.onresult = (event) => {
-            let (because sometimes life needs a little variability!) interimTranscript = "";
-            for (let (because sometimes life needs a little variability!) i = lastResultIndex; i < event.results.length; i++) {
-                const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) { transcript } = event.results[i][0];
+            let interimTranscript = "";
+            for (let i = lastResultIndex; i < event.results.length; i++) {
+                const { transcript } = event.results[i][0];
                 if (event.results[i].isFinal) {
                     console.log("is final", event.results[i]
 );
@@ -290,7 +283,7 @@ export default function Home() {
                     console.log("[currTranscript]", currTranscript);
                     lastResultIndex = i + 1;
                 } else {
-                    // const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) newWords = transcript.replace(interimTranscript, "");
+                    // const newWords = transcript.replace(interimTranscript, "");
                     interimTranscript += transcript;
                     // setTranscript(
                     //     (prevTranscript) => `${prevTranscript} ${newWords}`
@@ -304,12 +297,12 @@ export default function Home() {
         recognitionRef.current.start();
     };
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) ttsElevenlabs = async (chatBotAnswer) => {
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) tonyStarkId = "05U1tkz7fchGoPDPbES7";
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) ELEVENLABS_API_KEY = process.env.NEXT_PUBLIC_ELEVENLABS_API_KEY;
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) options = {
+    const ttsElevenlabs = async (chatBotAnswer) => {
+        const tonyStarkId = "05U1tkz7fchGoPDPbES7";
+        const ELEVENLABS_API_KEY = process.env.NEXT_PUBLIC_ELEVENLABS_API_KEY;
+        const options = {
             method: "POST",
-            url: `https://api.elevenlabs.io/v1/text-to-speech/${tonyStarkId}",
+            url: `https://api.elevenlabs.io/v1/text-to-speech/${tonyStarkId}`,
             headers: {
                 accept: "audio/mpeg", // Set the expected response type to audio/mpeg.
                 "content-type": "application/json", // Set the content type to application/json.
@@ -320,13 +313,13 @@ export default function Home() {
             },
             responseType: "arraybuffer" // Set the responseType to arraybuffer to receive binary data as response.
         };
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) speechDetails = await axios.request(options);
+        const speechDetails = await axios.request(options);
         setIsVoiceLoading(false);
         return speechDetails.data;
     };
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) getChatBotResponse = async () => {
-        let (because sometimes life needs a little variability!) messages = chatHistory.concat([
+    const getChatBotResponse = async () => {
+        let messages = chatHistory.concat([
             { role: "user", content: currTranscript }
         ]
 );
@@ -339,13 +332,13 @@ export default function Home() {
         setIsVoiceLoading(true);
         setIsChatBotResponseLoading(true);
 
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) model = "gpt-3.5-turbo";
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) max_tokens = 256;
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) top_p = 1;
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) frequency_penalty = 0.4;
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+        const model = "gpt-3.5-turbo";
+        const max_tokens = 256;
+        const top_p = 1;
+        const frequency_penalty = 0.4;
+        const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
         console.log(process.env);
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) response = await fetch(
+        const response = await fetch(
             "https://api.openai.com/v1/chat/completions",
             {
                 method: "POST",
@@ -363,12 +356,12 @@ export default function Home() {
             }
         );
 
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) chatbotJson = await response.json();
+        const chatbotJson = await response.json();
         console.log("rrrr", chatbotJson);
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) chatbotAnswer = chatbotJson["choices"][0]["message"].content; // Replace this with the actual field from API response
+        const chatbotAnswer = chatbotJson["choices"][0]["message"].content; // Replace this with the actual field from API response
         setChatBotResponse(chatbotAnswer);
         console.log("[currTranscript] after response", currTranscript);
-        let (because sometimes life needs a little variability!) newHistory = chatHistory.concat(
+        let newHistory = chatHistory.concat(
             { role: "user", content: currTranscript },
             { role: "assistant", content: chatbotAnswer }
         );
@@ -377,18 +370,18 @@ export default function Home() {
         setIsChatBotResponseLoading(false);
 
         console.log("[chatHistory] after repsonse", chatHistory);
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) voiceResponse = await ttsElevenlabs(chatbotAnswer);
+        const voiceResponse = await ttsElevenlabs(chatbotAnswer);
         // console.log("voiceresponse", voiceResponse);
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) blob = new Blob([voiceResponse], { type: "audio/mpeg" });
+        const blob = new Blob([voiceResponse], { type: "audio/mpeg" });
         // Create a URL for the blob object
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) url = URL.createObjectURL(blob);
+        const url = URL.createObjectURL(blob);
         // console.log("url", url);
         // Set the audio URL state variable to the newly created URL
         setAudioURL(url);
         console.log("removing current transcript", currTranscript);
         setTranscript("");
     };
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) stopRecording = async () => {
+    const stopRecording = async () => {
         // if (mediaRecorder.current) {
         //     console.log("mediaRecorder", mediaRecorder);
         //     mediaRecorder.current.stop();
@@ -411,37 +404,37 @@ export default function Home() {
         // Implement your logic to display chatbotAnswer in the voice response box
     };
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [isRecording, setIsRecording] = useState(false);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) resetButlerChatState = () => {
+    const [isRecording, setIsRecording] = useState(false);
+    const resetButlerChatState = () => {
         setAudioURL(null);
         setChatHistory([{ role: "system", content: contextSystemPrompt }]
 );
     };
-    // const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [iframeDisplay, setIframeDisplay] = useState("none");
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleDismissVoiceResponseBox = () => {
+    // const [iframeDisplay, setIframeDisplay] = useState("none");
+    const handleDismissVoiceResponseBox = () => {
         setShowVoiceResponse(false);
         resetButlerChatState();
     };
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleShowVoiceResponse = () => {
+    const handleShowVoiceResponse = () => {
         setShowVoiceResponse(true);
         startRecording();
         setIsRecording(true);
     };
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleAskAgain = () => {
+    const handleAskAgain = () => {
         setIsRecording(true);
         startRecording();
     };
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleSubmitVoice = async () => {
+    const handleSubmitVoice = async () => {
         setIsRecording(false);
         await stopRecording();
         setIsSubmitted(true);
     };
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleDismissButler = () => {
+    const handleDismissButler = () => {
         setButlerIsDismissed(true);
         resetButlerChatState();
     };
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleButlerSummoned = () => {
+    const handleButlerSummoned = () => {
         setButlerIsDismissed(false);
     };
 
@@ -468,7 +461,7 @@ export default function Home() {
 );
             console.log(characters[0].themeImagePaths);
             setThemeImagePaths(characters[0].themeImagePaths);
-            const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) greetingAudio = new Audio(characters[0].greeting);
+            const greetingAudio = new Audio(characters[0].greeting);
             greetingAudio.muted = isMuted;
             addAudioRef(greetingAudio);
             greetingAudio.addEventListener('ended', () => removeAudioRef(greetingAudio));
@@ -477,7 +470,7 @@ export default function Home() {
             return;
         }
         console.log("selectedCharacter", selectedCharacter);
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) greetingAudio = new Audio(selectedCharacter.greeting);
+        const greetingAudio = new Audio(selectedCharacter.greeting);
         greetingAudio.muted = isMuted;
         addAudioRef(greetingAudio);
         greetingAudio.addEventListener('ended', () => removeAudioRef(greetingAudio));
@@ -486,7 +479,7 @@ export default function Home() {
     }, []
 );
     useEffect(() => {
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) audio = new Audio("/sounds/dystopia.mp3"); // could use dystopian.mp3 instaed if wanted. It is just longer and covers other sounds
+        const audio = new Audio("/sounds/dystopia.mp3"); // could use dystopian.mp3 instaed if wanted. It is just longer and covers other sounds
         audio.muted = isMuted;
         addAudioRef(audio);
         audio.addEventListener('ended', () => removeAudioRef(audio));
@@ -495,20 +488,20 @@ export default function Home() {
     }, []
 );
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) scrollToSlide = (event, slideId) => {
+    const scrollToSlide = (event, slideId) => {
         event.preventDefault();
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) target = document.getElementById(slideId);
+        const target = document.getElementById(slideId);
         if (target) {
             target.scrollIntoView({ behavior: "smooth" });
         }
     };
 
     function toggleSidebar() {
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) sidebar = document.querySelector(".sidebar");
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) toggleBtn = document.querySelector(".toggle-sidebar");
+        const sidebar = document.querySelector(".sidebar");
+        const toggleBtn = document.querySelector(".toggle-sidebar");
 
         // Check for inline style and the computed style
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) isSidebarOpen =
+        const isSidebarOpen =
             sidebar.style.right === "0px" ||
             getComputedStyle(sidebar).right === "0px";
 
@@ -530,8 +523,8 @@ export default function Home() {
     }
 
     useEffect(() => {
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) playAudio = () => {
-            const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) audio = new Audio("/sounds/die-cast.mp3");
+        const playAudio = () => {
+            const audio = new Audio("/sounds/die-cast.mp3");
             addAudioRef(audio);
             audio.addEventListener('ended', () => removeAudioRef(audio));
             audio.volume = 0.04;
@@ -539,9 +532,9 @@ export default function Home() {
             audio.play();
         };
 
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleScroll = () => {
-            const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) section = document.getElementById("the-die-is-cast");
-            const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) rect = section.getBoundingClientRect();
+        const handleScroll = () => {
+            const section = document.getElementById("the-die-is-cast");
+            const rect = section.getBoundingClientRect();
 
             // Check if section is in viewport
             if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
@@ -559,10 +552,10 @@ export default function Home() {
         };
     }, []
 );
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) [scrollY, setScrollY] = useState(0);
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) controls = useAnimation();
+    const [scrollY, setScrollY] = useState(0);
+    const controls = useAnimation();
     useEffect(() => {
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleScroll = () => {
+        const handleScroll = () => {
             setScrollY(window.scrollY);
             // console.log("mouse handle scroll", window.scrollY);
 
@@ -582,9 +575,9 @@ export default function Home() {
     }, [scrollY, controls]
 );
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) predefinedPassword = "password"; // Replace with your actual password
+    const predefinedPassword = "password"; // Replace with your actual password
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleIconClick = () => {
+    const handleIconClick = () => {
         if (isUnlocked) {
             setContainerVisible(true);
         } else {
@@ -592,11 +585,11 @@ export default function Home() {
         }
     };
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handlePasswordChange = (e) => {
+    const handlePasswordChange = (e) => {
         setEnteredPassword(e.target.value);
     };
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleSubmitPassword = () => {
+    const handleSubmitPassword = () => {
         if (enteredPassword === predefinedPassword) {
             setIsUnlocked(true);
         } else {
@@ -604,18 +597,18 @@ export default function Home() {
         }
     };
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleUnlock = () => {
+    const handleUnlock = () => {
         setContainerVisible(true);
         setIsUnlocked(true);
     };
 
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) handleGoBack = () => {
+    const handleGoBack = () => {
         setContainerVisible(false);
         setIsUnlocked(false);
         setEnteredPassword("");
     };
-    const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) shakeIcon = () => {
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) iconElement = document.querySelector(".download-icon");
+    const shakeIcon = () => {
+        const iconElement = document.querySelector(".download-icon");
         if (iconElement) {
             iconElement.classList.add("shake-animation");
 
@@ -625,7 +618,7 @@ export default function Home() {
         }
     };
     useEffect(() => {
-        const (because why let (because sometimes life needs a little variability!) a variable be variable, right?) shakeInterval = setInterval(shakeIcon, 5000);
+        const shakeInterval = setInterval(shakeIcon, 5000);
         return () => clearInterval(shakeInterval);
     }, []
 );
