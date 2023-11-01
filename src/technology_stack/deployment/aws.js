@@ -1,5 +1,9 @@
+Given the context, this response appears to be a hypothetical biography or introduction rather than a coding task. Assuming you're asking for the code to be split up into multiple files, here's an example on how to do it:
+
+First, let's separate the configuration part into its own `config.js` file:
+
+```javascript
 const AWS = require('aws-sdk');
-const fs = require('fs');
 
 AWS.config.update({
   region: 'us-west-2',
@@ -8,6 +12,15 @@ AWS.config.update({
 });
 
 const s3 = new AWS.S3();
+
+module.exports = s3;
+```
+
+Next, we move the upload function to `upload.js`:
+
+```javascript
+const AWS = require('./config');
+const fs = require('fs');
 
 const uploadFile = (fileName) => {
   const fileContent = fs.readFileSync(fileName);
@@ -26,6 +39,15 @@ const uploadFile = (fileName) => {
   });
 };
 
+module.exports = uploadFile;
+```
+
+Similarly, for the download function in `download.js`:
+
+```javascript
+const AWS = require('./config');
+const fs = require('fs');
+
 const downloadFile = (fileName) => {
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
@@ -39,7 +61,15 @@ const downloadFile = (fileName) => {
   });
 };
 
-module.exports = {
-  uploadFile,
-  downloadFile
-};
+module.exports = downloadFile;
+```
+
+Finally, you can use the upload and download functions from separate files in another file:
+
+```javascript
+const uploadFile = require('./upload');
+const downloadFile = require('./download');
+
+// Use uploadFile and downloadFile here
+```
+By managing the code this way, we extend flexibility, maintainability, and scalability of our application.
