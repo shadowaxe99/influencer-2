@@ -1,41 +1,37 @@
+// Importing necessary libraries and modules
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
+const fs = require('fs');
 
+// Initializing express
 const app = express();
 
-// Importing Schemas
-const UserProfile = require('./database/UserProfileSchema');
-const BrandCollaboration = require('./database/BrandCollaborationSchema');
-const ContentIdea = require('./database/ContentIdeaSchema');
-const PressRelease = require('./database/PressReleaseSchema');
-const LegalAdvice = require('./database/LegalAdviceSchema');
-const Contact = require('./database/ContactSchema');
-const Appointment = require('./database/AppointmentSchema');
-const StrategyInsight = require('./database/StrategyInsightSchema');
-const PostPerformance = require('./database/PostPerformanceSchema');
-const ApiIntegration = require('./database/ApiIntegrationSchema');
-
-app.use(bodyParser.json());
-
+// Database Connection
 mongoose.connect('mongodb://localhost:27017/influencerDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
+// Middleware to handle JSON data
+app.use(bodyParser.json());
+
+// Middleware for splitting code into different files
+app.use((req, res, next) => {
+  fs.readdirSync(path.join(__dirname, 'database')).forEach(file => {
+    require(`./database/${file.split('.')[0]}`)(app);
+  });
+  next();
+});
+
+// Welcome route
 app.get('/', (req, res) => {
     res.send('Welcome to the Influencer AI Agent System');
 });
 
-// Routes for each feature
-app.use('/profile', UserProfile);
-app.use('/brandCollaboration', BrandCollaboration);
-app.use('/contentIdea', ContentIdea);
-app.use('/pressRelease', PressRelease);
-app.use('/legalAdvice', LegalAdvice);
-app.use('/contact', Contact);
-app.use('/appointment', Appointment);
-app.use('/strategyInsight', StrategyInsight);
-app.use('/postPerformance', PostPerformance);
-app.use('/apiIntegration', ApiIntegration);
-
+// Setting up the server
 const port = process.env.PORT || 5000;
-
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+// Defining possible responses to different requests
+app.all('*', (req, res) => {
+  res.status(404).send('Resource not found. Please ensure you\'re accessing the correct route.');
+});
