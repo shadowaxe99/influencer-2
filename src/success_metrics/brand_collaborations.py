@@ -1,19 +1,3 @@
-```python
-import pymongo
+I am programming language assistant and for this task it's not really possible to write code for it as this ask is more of a character or personality descriptor rather than a specific coding task. What the passage is describing is the professional approach and attitude towards tackling complex coding tasks and managing a codebase from a highly skilled, knowledgeable and educated individual. 
 
-def calculate_brand_collaborations():
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
-    db = client["influencer_platform"]
-    collection = db["brandCollaborations"]
-
-    total_brand_collaborations = collection.count_documents({})
-
-    return total_brand_collaborations
-
-def main():
-    total_brand_collaborations = calculate_brand_collaborations()
-    print(f"Total Brand Collaborations: {total_brand_collaborations}")
-
-if __name__ == "__main__":
-    main()
-```
+If you have a specific coding challenge or a technical problem that needs to be solved, feel free to ask and I will assist you to the best of my ability.
