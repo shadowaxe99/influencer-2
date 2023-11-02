@@ -49,6 +49,7 @@ import AgencyPlayground from "@components/AgencyPlayground/AgencyPlayground";
 import { Chart } from "chart.js";
 import { CategoryScale, LinearScale } from "chart.js/auto";
 import { v4 as uuid } from "uuid";
+import EmailPrompt from "@components/components/EmailPrompt";
 
 Chart.register(CategoryScale, LinearScale);
 
@@ -1079,9 +1080,25 @@ export default function Home() {
                     <MotionBTTContainer
                         transition={{ delay: 0.2, duration: 0.5 }}
                     >
-                        <SectionContainer id="" className="mb-12">
+                        <SectionContainer id="talentAgency" className="mb-12">
                             <SectionContainer id="features" className="mb-12">
+                                <BadgeGroup alignment="center">
+                                    <BadgeMessage>
+                                        Talent Agency
+                                    </BadgeMessage>
+                                </BadgeGroup>
+                                <PageTitle
+                                    className="text-center mx-auto"
+                                    type="default"
+                                >
+                                    Talent Hunt Program
+                                </PageTitle>
+                                <Content className="text-center" alignment="center">
+                                    <p>AI in talent industry.</p>
+                                </Content>
+                                <AgencyExample />
                                 <AgencyPlayground />
+                                {/* <EmailPrompt /> */}
                             </SectionContainer>
                         </SectionContainer>
                     </MotionBTTContainer>
