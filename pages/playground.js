@@ -52,8 +52,6 @@ import { v4 as uuid } from "uuid";
 
 Chart.register(CategoryScale, LinearScale);
 
-config();
-
 const contextSystemPrompt = `
         You are Alfred, an AI Butler Assistant who's job is to help answer questions about Elysium. You are a sitting atop the website we will have users interact with to get a taste of what elysium is building towards. Elysium is a company dedicated to bringing AI to the masses. Refer to Elysium in the context of 'we', 'us', and 'I' because you are on the team. Here is some more information about the company:
         ---
@@ -87,8 +85,7 @@ export default function Home() {
     const [chatBotResponse, setChatBotResponse] = useState("");
     const [chatHistory, setChatHistory] = useState([
         { role: "system", content: contextSystemPrompt }
-    ]
-);
+    ]);
     const [audioURL, setAudioURL] = useState(null);
     const [isVoiceLoading, setIsVoiceLoading] = useState(false);
     const [isButlerDismissed, setButlerIsDismissed] = useState(false);
@@ -104,19 +101,16 @@ export default function Home() {
         "ELYSIUM_INNOVATIONS_DECK.pdf",
         "Elysium_Business_Plan.pdf",
         "Elysium_Innovations_Financial_Model.xlsx",
-    ]
-);
+    ]);
     const [fontFamily, setFontFamily] = useState("");
     const [fontVariable, setFontVariable] = useState("");
     const [letterSpacing, setLetterSpacing] = useState("");
     const [isMuted, setIsMuted] = useState(false);
     const [localMute, setLocalMute] = useState(false);
-    const audioRefs = useRef([]
-);
+    const audioRefs = useRef([]);
 
     const addAudioRef = (audio) => {
         audioRefs.current.push(audio);
-        // console.log("MUTED OR NOT IN ADD REF: ", localMute)
         // audio.muted = isMuted;
     };
 
@@ -124,9 +118,8 @@ export default function Home() {
         audioRefs.current.forEach(audio => {
             audio.muted = isMuted;
         });
-    }, [isMuted, addAudioRef]
-);
-    
+    }, [isMuted, addAudioRef]);
+
     const removeAudioRef = (audioToRemove) => {
         audioRefs.current = audioRefs.current.filter(audio => audio !== audioToRemove);
     };
@@ -137,8 +130,8 @@ export default function Home() {
         allMediaElements.forEach(media => {
             media.muted = !isMuted;
         });
-      };      
-      
+    };
+
     useEffect(() => {
         if (selectedCharacter) {
             setFontFamily(selectedCharacter.fontFamily);
@@ -148,9 +141,7 @@ export default function Home() {
             console.log("font family", selectedCharacter.fontFamily);
             console.log("font variable", selectedCharacter.fontVariable);
         }
-    }, []
-);
-
+    }, []);
 
     const accordionData = [
         {
