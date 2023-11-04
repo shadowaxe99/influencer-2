@@ -10,7 +10,7 @@ const EmailCannon = () => {
       <CardContent className="p-10">
         <div className="flex items-center justify-center">
           <img
-            alt="Email Cannon"
+            alt="Automated Deck Maker"
             height="250"
             src="/placeholder.svg"
             style={{
@@ -20,7 +20,7 @@ const EmailCannon = () => {
             width="250" />
         </div>
         <div className="mt-6">
-          <h2 className="text-2xl font-bold text-center">Email Cannon</h2>
+          <h2 className="text-2xl font-bold text-center">Automated Deck Maker</h2>
           <p className="text-zinc-500 dark:text-zinc-400 text-center mt-2">Upload a CSV file to send mass emails</p>
         </div>
         <div className="mt-6">

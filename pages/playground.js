@@ -1102,7 +1102,7 @@ export default function Home() {
                                 <AgencyPlayground />
                                 <BusinessPlan />
                                 {/* <EmailCannon /> */}
-                                {/* <GraphvizRender /> */}
+                                <GraphvizRender />
                             </SectionContainer>
                         </SectionContainer>
                     </MotionBTTContainer>

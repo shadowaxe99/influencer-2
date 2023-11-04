@@ -48,7 +48,7 @@ const BusinessPlan = () => {
       }, {
         responseType: 'blob',
         onDownloadProgress: progressEvent => {
-          const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          const percentCompleted = Math.floor((progressEvent.loaded * 100) / progressEvent.total);
           setProgress(percentCompleted);
           if (percentCompleted === 100) {
             if (timer) {
