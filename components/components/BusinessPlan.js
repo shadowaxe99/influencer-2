@@ -1,42 +1,65 @@
 
 import { Input } from "@components/components/ui/input"
-import { Button } from "@components/components/ui/button"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const EmailPrompt = () => {
+const BusinessPlan = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [timer, setTimer] = useState(null);
+  const [fileDownloaded, setFileDownloaded] = useState(false);
+
+  const incrementProgress = () => {
+    setProgress((prevProgress) => {
+      if (prevProgress < 100) {
+        const newProgress = prevProgress + (100 / 60); // Increment such that it fills in 60 seconds
+        return newProgress > 100 ? 100 : newProgress;
+      }
+      return prevProgress;
+    });
+  };
+
+  useEffect(() => {
+    // If the form is submitting and there is no timer, start one
+    if (isSubmitting && !timer) {
+      const newTimer = setInterval(incrementProgress, 1000);
+      setTimer(newTimer);
+    }
+
+    // Cleanup the timer when form is not submitting or unmounted
+    return () => {
+      if (timer) {
+        clearInterval(timer);
+      }
+    };
+  }, [isSubmitting, timer]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    // Collect form data
+    setIsSubmitting(true);
+    setFileDownloaded(false);
+
     const formData = new FormData(event.target);
     const formProps = Object.fromEntries(formData);
-    
-    setIsSubmitting(true);
-    setProgress(25); // Initial progress after submission
 
     try {
-      // Send request to your API
-      const response = await axios.post('http://127.0.0.1:5000/generate-plan', {
+      const response = await axios.post('https://businessplan-kts37hcg2q-uc.a.run.app/generate-plan', {
         prompt: formProps
       }, {
-        responseType: 'blob', // Important for receiving the PDF file
+        responseType: 'blob',
         onDownloadProgress: progressEvent => {
           const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
           setProgress(percentCompleted);
+          if (percentCompleted === 100) {
+            if (timer) {
+              clearInterval(timer); // Stop the timer if the download is complete
+            }
+            setFileDownloaded(true); // Set the downloaded flag
+          }
         }
       });
 
-      // Create a Blob from the PDF Stream
-      const file = new Blob(
-        [response.data], 
-        { type: 'application/pdf' }
-      );
-
-      // Create a link element, use it to download the file and remove it
+      const file = new Blob([response.data], { type: 'application/pdf' });
       const fileURL = URL.createObjectURL(file);
       const fileLink = document.createElement('a');
       fileLink.href = fileURL;
@@ -49,12 +72,28 @@ const EmailPrompt = () => {
     } finally {
       setIsSubmitting(false);
       setProgress(0);
+      setTimer(null);
+    }
+  };
+
+  // Render the progress bar or the file downloaded message
+  const renderProgress = () => {
+    if (fileDownloaded) {
+      return <p className="text-white">File Downloaded, Please check your downloads folder</p>;
+    } else if (isSubmitting) {
+      return (
+        <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+          <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style={{ width: `${progress}%` }}>{progress}%</div>
+        </div>
+      );
+    } else {
+      return null;
     }
   };
 
   return (
-    (<section
-      className="w-full p-12 bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500 shadow-md rounded-md dark:from-gray-800 dark:via-gray-700 dark:to-gray-600 transition-all duration-500 ease-in-out hover:scale-105">
+    <section
+      className="w-full p-12 bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500 shadow-md rounded-md dark:from-gray-800 dark:via-gray-700 dark:to-gray-600 transition-all duration-500 ease-in-out">
       <h2
         className="text-3xl font-bold text-white mb-4 tracking-wide transform hover:scale-110 transition-transform duration-300">
         <span aria-label="rocket" className="animate-bounce" role="img">
@@ -89,7 +128,7 @@ const EmailPrompt = () => {
         </svg>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4" method="POST">
-        <Input
+      <Input
           className="w-full py-2 px-3 border border-white rounded-md text-white bg-opacity-20 bg-white transition-all duration-300 hover:bg-opacity-30 focus:border-blue-600 ring-2 ring-transparent focus:ring-blue-600 transition-ring ease-linear duration-500"
           name="startUpName"
           placeholder="Start-Up Name 🏢"
@@ -110,24 +149,19 @@ const EmailPrompt = () => {
           placeholder="Milestones 🏁"
           type="text" />
         <div className="flex items-center gap-4">
-          {/* <a download href="#"> */}
-            {!isSubmitting ? (
-              <Button
-                className="bg-blue-600 text-white rounded-md py-2 px-4 hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-900"
-                type="submit"
-                variant="secondary">
-                Export Plan
-              </Button>
-            ) : (
-              <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style={{ width: `${progress}%` }}>{progress}%</div>
-              </div>
-            )}  
-          {/* </a> */}
+          {renderProgress()}
+          {!isSubmitting && (
+            <button
+              className="bg-blue-600 text-white rounded-md py-2 px-4 hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-900"
+              type="submit"
+            >
+              Export Plan
+            </button>
+          )}
         </div>
       </form>
-    </section>)
+    </section>
   );
 }
 
-export default EmailPrompt;
+export default BusinessPlan;

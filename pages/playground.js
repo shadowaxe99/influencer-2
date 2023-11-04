@@ -49,7 +49,9 @@ import AgencyPlayground from "@components/AgencyPlayground/AgencyPlayground";
 import { Chart } from "chart.js";
 import { CategoryScale, LinearScale } from "chart.js/auto";
 import { v4 as uuid } from "uuid";
-import EmailPrompt from "@components/components/EmailPrompt";
+import BusinessPlan from "@components/components/BusinessPlan";
+import EmailCannon from "@components/components/EmailCannon";
+import GraphvizRender from "@components/components/GraphViz";
 
 Chart.register(CategoryScale, LinearScale);
 
@@ -1098,7 +1100,9 @@ export default function Home() {
                                 </Content>
                                 <AgencyExample />
                                 <AgencyPlayground />
-                                {/* <EmailPrompt /> */}
+                                <BusinessPlan />
+                                {/* <EmailCannon /> */}
+                                {/* <GraphvizRender /> */}
                             </SectionContainer>
                         </SectionContainer>
                     </MotionBTTContainer>
