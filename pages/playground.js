@@ -52,6 +52,7 @@ import { v4 as uuid } from "uuid";
 import BusinessPlan from "@components/components/BusinessPlan";
 import EmailCannon from "@components/components/EmailCannon";
 import GraphvizRender from "@components/components/GraphViz";
+import FortuneTeller from "@components/components/FortuneTeller";
 
 Chart.register(CategoryScale, LinearScale);
 
@@ -1101,8 +1102,9 @@ export default function Home() {
                                 <AgencyExample />
                                 <AgencyPlayground />
                                 <BusinessPlan />
-                                {/* <EmailCannon /> */}
+                                <EmailCannon />
                                 <GraphvizRender />
+                                {/* <FortuneTeller  /> */}
                             </SectionContainer>
                         </SectionContainer>
                     </MotionBTTContainer>
