@@ -1104,7 +1104,7 @@ export default function Home() {
                                 <BusinessPlan />
                                 <EmailCannon />
                                 <GraphvizRender />
-                                {/* <FortuneTeller  /> */}
+                                <FortuneTeller  />
                             </SectionContainer>
                         </SectionContainer>
                     </MotionBTTContainer>
