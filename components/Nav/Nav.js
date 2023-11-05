@@ -63,7 +63,7 @@ export const Nav = ({ toggleSidebar }) => {
                                     key={item.name}
                                     to={item.to}
                                     href={item.href}
-                                    className={`menu-item--link flex items-center
+                                    className={`menu-item--link  flex items-center
                     ${router.pathname === item.href ? "active" : ""}
                   `}
                                     onClick={controlNavAndSidebar}
