@@ -3,7 +3,7 @@ import { graphviz } from 'd3-graphviz';
 import 'd3-transition';
 const API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
 const systemMessage = `YOUR TASK IS TO MAKE A PROPER 'GRAPHVIZ' CODE TO VISUALIZE AI AGENT HEIRARCHY FOR ANY QUERY PROVIDED BY THE USER.
-                      RETURN THE GRAPHVIZ CODE AND NOTHING ELSE AT ALL`;
+                      RETURN THE GRAPHVIZ CODE AND NOTHING ELSE AT ALL. ALWAYS RETURN SOME GRAPHVIZ CODE NO MATTER WHAT, WHICH IS PERFECTLY SUITABLE TO USER'S REQUEST`;
 
 const GraphvizRender = () => {
   const [query, setQuery] = useState('');
@@ -26,6 +26,7 @@ const GraphvizRender = () => {
 
   function extractGraphvizCode(inputString) {
     const startIndex = inputString.indexOf('digraph');
+    console.log(inputString);
     if (startIndex === -1) {
       throw new Error('digraph not found in the string.');
     }
