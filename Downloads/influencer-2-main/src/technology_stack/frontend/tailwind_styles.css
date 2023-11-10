@@ -1,0 +1,57 @@
+/* src/technology_stack/frontend/tailwind_styles.css */
+
+/* Global Styles */
+body {
+  @apply bg-gray-100 text-gray-800;
+}
+
+/* Container Styles */
+#profileContainer,
+#brandCollabContainer,
+#contentIdeaContainer,
+#pressReleaseContainer,
+#legalAdviceContainer,
+#contactContainer,
+#appointmentContainer,
+#strategyInsightContainer,
+#postPerformanceContainer,
+#apiIntegrationContainer {
+  @apply bg-white shadow-md rounded-lg p-6 my-4;
+}
+
+/* Button Styles */
+button {
+  @apply bg-blue-500 text-white px-4 py-2 rounded;
+}
+
+button:hover {
+  @apply bg-blue-600;
+}
+
+/* Form Styles */
+input,
+textarea {
+  @apply border-gray-300 rounded p-2 w-full;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-white shadow-md rounded-lg p-6 my-4;
+}
+
+.card-header {
+  @apply text-xl font-bold;
+}
+
+.card-body {
+  @apply mt-2;
+}
+
+/* Message Styles */
+.message {
+  @apply bg-green-100 text-green-800 border border-green-200 rounded p-4 my-2;
+}
+
+.message.error {
+  @apply bg-red-100 text-red-800 border border-red-200;
+}
