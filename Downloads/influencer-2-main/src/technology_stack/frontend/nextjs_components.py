@@ -3,7 +3,11 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 // Importing shared dependencies
+<<<<<<< HEAD
+import { userProfile, brandCollaborations, contentIdeas, pressReleases, legalAdvice, contactDatabase, appointmentSchedule, strategyInsights, postPerformance, apiIntegrations } from '../../shared_dependencies';
+=======
 from src.shared_dependencies import userProfile, brandCollaborations, contentIdeas, pressReleases, legalAdvice, contactDatabase, appointmentSchedule, strategyInsights, postPerformance, apiIntegrations
+>>>>>>> ac62b9b (Initial commit)
 
 // Importing components
 import Profile from '../components/Profile';

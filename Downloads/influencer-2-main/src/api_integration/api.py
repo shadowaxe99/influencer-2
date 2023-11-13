@@ -1,5 +1,18 @@
+<<<<<<< HEAD
+```python
+import requests
+from src.ai_agents.profile_management import UserProfileSchema
+from src.ai_agents.brand_outreach import BrandCollaborationSchema
+from src.ai_agents.content_management import ContentIdeaSchema
+from src.ai_agents.pr_media import PressReleaseSchema
+from src.ai_agents.legal_advisor import LegalAdviceSchema
+from src.ai_agents.crm_scheduling import ContactSchema, AppointmentSchema
+from src.ai_agents.analyst import StrategyInsightSchema
+from src.social_media_automation.posting import PostPerformanceSchema
+=======
 import requests
 from src.shared_dependencies import UserProfileSchema, BrandCollaborationSchema, ContentIdeaSchema, PressReleaseSchema, LegalAdviceSchema, ContactSchema, AppointmentSchema, StrategyInsightSchema, PostPerformanceSchema
+>>>>>>> ac62b9b (Initial commit)
 
 class APIIntegration:
     def __init__(self, api_key, base_url):
@@ -26,6 +39,21 @@ class APIIntegration:
         response = requests.delete(f'{self.base_url}/{endpoint}', headers=headers)
         return response.json()
 
+<<<<<<< HEAD
+apiIntegrations = APIIntegration('your_api_key', 'https://api.yourwebsite.com')
+
+def integrateAPIs():
+    userProfile = UserProfileSchema(apiIntegrations.get_data('userProfile'))
+    brandCollaborations = BrandCollaborationSchema(apiIntegrations.get_data('brandCollaborations'))
+    contentIdeas = ContentIdeaSchema(apiIntegrations.get_data('contentIdeas'))
+    pressReleases = PressReleaseSchema(apiIntegrations.get_data('pressReleases'))
+    legalAdvice = LegalAdviceSchema(apiIntegrations.get_data('legalAdvice'))
+    contactDatabase = ContactSchema(apiIntegrations.get_data('contactDatabase'))
+    appointmentSchedule = AppointmentSchema(apiIntegrations.get_data('appointmentSchedule'))
+    strategyInsights = StrategyInsightSchema(apiIntegrations.get_data('strategyInsights'))
+    postPerformance = PostPerformanceSchema(apiIntegrations.get_data('postPerformance'))
+```
+=======
 def integrateAPIs(api_integration):
     userProfile = UserProfileSchema(api_integration.get_data('userProfile'))
     brandCollaborations = BrandCollaborationSchema(api_integration.get_data('brandCollaborations'))
@@ -47,3 +75,4 @@ def integrateAPIs(api_integration):
         'strategyInsights': strategyInsights,
         'postPerformance': postPerformance
     }
+>>>>>>> ac62b9b (Initial commit)

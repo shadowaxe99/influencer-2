@@ -1,5 +1,7 @@
 import requests
 from src.shared_dependencies import generateContentIdeas
+import schedule
+import time
 
 def autoPostContent(platform_api_keys):
     content_ideas = generateContentIdeas()
@@ -16,11 +18,10 @@ def autoPostContent(platform_api_keys):
                 print(f"Successfully posted content on {platform}.")
 
 def scheduleAutoPosting(platform_api_keys, schedule_time):
-    content_ideas = generateContentIdeas()
-    # This function uses a scheduler like 'schedule' or 'APScheduler' to run the autoPostContent function at the given schedule_time
-    # Please install the required scheduler package and import it at the top of this file
-    # Below is a pseudo code
-    schedule.every().day.at(schedule_time).do(autoPostContent, content_ideas, platform_api_keys)
+    schedule.every().day.at(schedule_time).do(autoPostContent, platform_api_keys)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
 def main():
     platform_api_keys = {
@@ -32,5 +33,5 @@ def main():
     schedule_time = "09:00"  # The time when the posts should be auto posted. Format: "HH:MM"
     scheduleAutoPosting(platform_api_keys, schedule_time)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

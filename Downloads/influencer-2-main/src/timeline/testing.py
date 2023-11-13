@@ -1,5 +1,16 @@
 ```python
 import unittest
+<<<<<<< HEAD
+from src.ai_agents.profile_management import manageUserProfile
+from src.ai_agents.brand_outreach import manageBrandCollaborations
+from src.ai_agents.content_management import generateContentIdeas
+from src.ai_agents.pr_media import generatePressReleases
+from src.ai_agents.legal_advisor import provideLegalAdvice
+from src.ai_agents.crm_scheduling import manageContacts, scheduleAppointments
+from src.ai_agents.analyst import analyzeStrategy
+from src.social_media_automation.posting import autoPostContent
+from src.api_integration.api import integrateAPIs
+=======
 from src.shared_dependencies import manageUserProfile
 from src.shared_dependencies import manageBrandCollaborations
 from src.shared_dependencies import generateContentIdeas
@@ -9,6 +20,7 @@ from src.shared_dependencies import manageContacts, scheduleAppointments
 from src.shared_dependencies import analyzeStrategy
 from src.shared_dependencies import autoPostContent
 from src.shared_dependencies import integrateAPIs
+>>>>>>> ac62b9b (Initial commit)
 
 class TestAIPlatform(unittest.TestCase):
 

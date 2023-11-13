@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+```python
+=======
 
+>>>>>>> ac62b9b (Initial commit)
 import pandas as pd
 from sklearn import metrics
 from sklearn.model_selection import train_test_split

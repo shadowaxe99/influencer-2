@@ -1,149 +1,89 @@
-from typing import Dict
 from technology_stack.backend.database.mongodb import LegalAdviceSchema
+from pymongo import MongoClient, errors
+from typing import Dict, Optional
 
+<selectedCode>
 class LegalAdvisor:
     """
-    Provides legal advice and contract templates for influencers to use in brand collaborations.
+    This class serves as a legal advisor, providing optimal legal advice and contract templates for influencers
+    to use in brand collaborations. It interacts with a MongoDB database to store and retrieve legal advice efficiently.
     """
-    def __init__(self, db):
-        """
-        Initializes a new instance of the LegalAdvisor class.
-        :param db: The database connection to use.
-        """
-        self.db = db
 
-    def provide_legal_advice(self, user_id: str) -> Dict:
-        """
-        Offers legal advice to influencers based on their user profiles, helping them navigate the complexities of contracts and legal agreements.
+    def __init__(self, db_name: str, collection_name: str):
+        try:
+            self.client = MongoClient(
+                'mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+            self.client.server_info()  # force connection on a request as the
+            # connect=True parameter of MongoClient seems
+            # to be useless here
+        except errors.ServerSelectionTimeoutError as err:
+            # print the error message, and handle it gracefully
+            print("pymongo ERROR:", err)
+            self.handle_db_error(err)
 
-        Parameters:
-            user_id (str): The unique identifier of the influencer seeking legal advice.
+        self.db = self.client[db_name]
+        self.collection = self.db[collection_name]
 
-        Returns:
-            Dict: A dictionary containing the legal advice or an error message if no advice is found.
-        """
-        legal_advice = self.db.find_one("legal_advice", {"user_id": user_id})
-        if not legal_advice:
-            return {"error": "No legal advice found for this user."}
-        return legal_advice
+    def handle_db_error(self, err):
+        # Log and handle database connection errors gracefully
+        pass
 
-        """
-        Offers legal advice to the influencer based on their user ID. This advice can cover various aspects of influencer marketing, such as contracts, intellectual property, and compliance with regulations.
+    def provide_optimal_legal_advice(self, user_id: str) -> Dict:
+        advice = self.get_legal_advice(user_id)
+        if 'error' in advice:
+            # Handle missing advice case
+            pass
+        else:
+            # Enhance and optimize advice before returning
+            pass
+        return advice
 
-        Parameters:
-            user_id (str): The unique identifier of the user seeking legal advice.
+    def get_legal_advice(self, user_id: str) -> Optional[Dict]:
+        if self.client is not None:
+            legal_advice = self.collection.find_one({"user_id": user_id})
+            if not legal_advice:
+                return {"error": "No legal advice found for this user."}
+            return legal_advice
+        else:
+            return {"error": "Database connection error."}
 
-        Returns:
-            Dict: A dictionary containing the legal advice or an error message if no advice is found.
-        """
-        """
-        Offers legal advice to the influencer based on their profile and activities. This advice can include
-        contract reviews, negotiation tips, and other legal recommendations to protect the influencer's interests.
-
-        Parameters:
-            user_id (str): The unique identifier of the user to whom legal advice is provided.
-
-        Returns:
-            Dict: A dictionary containing the legal advice or an error message if no advice is found.
-        """
-        """
-        Provides legal advice for a given user.
-        :param user_id: The ID of the user to provide legal advice for.
-        :return: A dictionary containing the legal advice.
-        """
-        legal_advice = self.db.find_one("legal_advice", {"user_id": user_id})
-        if not legal_advice:
-            return {"error": "No legal advice found for this user."}
-        return legal_advice
-
-    def update_legal_advice(self, user_id: str, legal_advice: LegalAdviceSchema) -> Dict:
-        """
-        Updates the legal advice provided to an influencer, ensuring that it remains relevant and accurate as their circumstances change.
-
-        Parameters:
-            user_id (str): The unique identifier of the influencer whose legal advice is to be updated.
-            legal_advice (LegalAdviceSchema): An instance of LegalAdviceSchema containing the updated advice.
-
-        Returns:
-            Dict: A dictionary indicating the success or failure of the update operation.
-        """
-        result = self.db.update_one("legal_advice", {"user_id": user_id}, {"$set": legal_advice.__dict__})
-        if result.modified_count == 0:
-            return {"error": "Legal advice could not be updated."}
-        return {"success": "Legal advice updated successfully."}
-
-        """
-        Updates the legal advice provided to the influencer in the database. This can include changes to contract templates or new legal recommendations based on the influencer's evolving needs.
-
-        Parameters:
-            user_id (str): The unique identifier of the user whose legal advice is to be updated.
-            legal_advice (LegalAdviceSchema): The updated legal advice to be stored in the database.
-
-        Returns:
-            Dict: A dictionary indicating the success or failure of the update operation.
-        """
-        """
-        Updates the legal advice record for a user with new information. This can be used to reflect changes
-        in the influencer's situation or to add additional recommendations.
-
-        Parameters:
-            user_id (str): The unique identifier of the user whose legal advice is updated.
-            legal_advice (LegalAdviceSchema): The updated legal advice data.
-
-        Returns:
-            Dict: A dictionary indicating the success or failure of the update operation.
-        """
-        """
-        Updates the legal advice for a given user.
-        :param user_id: The ID of the user to update legal advice for.
-        :param legal_advice: The new legal advice to update.
-        :return: A dictionary indicating the result of the update operation.
-        """
-        result = self.db.update_one("legal_advice", {"user_id": user_id}, {"$set": legal_advice.__dict__})
+    def update_legal_advice(self, user_id: str, updated_advice: Dict) -> Dict:
+        result = self.collection.update_one(
+            {"user_id": user_id}, {"$set": updated_advice})
         if result.modified_count == 0:
             return {"error": "Legal advice could not be updated."}
         return {"success": "Legal advice updated successfully."}
 
     def delete_legal_advice(self, user_id: str) -> Dict:
-        """
-        Removes legal advice from the database, typically when it is no longer needed or if the influencer wishes to withdraw their profile.
-
-        Parameters:
-            user_id (str): The unique identifier of the influencer whose legal advice is to be deleted.
-
-        Returns:
-            Dict: A dictionary indicating the success or failure of the deletion operation.
-        """
-        result = self.db.delete_one("legal_advice", {"user_id": user_id})
+        result = self.collection.delete_one({"user_id": user_id})
         if result.deleted_count == 0:
             return {"error": "Legal advice could not be deleted."}
         return {"success": "Legal advice deleted successfully."}
 
-        """
-        Removes the legal advice associated with a specific user ID from the database. This is typically done when the advice is no longer relevant or at the request of the influencer.
+    def create_optimal_influencer_contract(self, contract_details: Dict) -> Dict:
+        result = self.collection.insert_one(contract_details)
+        if result.inserted_id is None:
+            return {"error": "Contract could not be created."}
+        return {"success": "Optimal contract created successfully.",
+                "contract_id": str(result.inserted_id)}
 
-        Parameters:
-            user_id (str): The unique identifier of the user whose legal advice is to be deleted.
+    def update_influencer_contract(self, contract_id: str, contract_updates: Dict) -> Dict:
+        result = self.collection.update_one(
+            {"_id": contract_id}, {"$set": contract_updates})
+        if result.modified_count == 0:
+            return {"error": "Contract could not be updated."}
+        return {"success": "Contract updated successfully."}
 
-        Returns:
-            Dict: A dictionary indicating the success or failure of the deletion operation.
-        """
-        """
-        Deletes the legal advice record for a user from the database. This may be necessary if the advice is no longer
-        relevant or if the influencer requests the removal of their data.
+    def get_influencer_contract(self, contract_id: str) -> Optional[Dict]:
+        contract = self.collection.find_one({"_id": contract_id})
+        if not contract:
+            return {"error": "No contract found for this id."}
+        return contract
 
-        Parameters:
-            user_id (str): The unique identifier of the user whose legal advice is deleted.
-
-        Returns:
-            Dict: A dictionary indicating the success or failure of the deletion operation.
-        """
-        """
-        Deletes the legal advice for a given user.
-        :param user_id: The ID of the user to delete legal advice for.
-        :return: A dictionary indicating the result of the delete operation.
-        """
-        result = self.db.delete_one("legal_advice", {"user_id": user_id})
+    def delete_influencer_contract(self, contract_id: str) -> Dict:
+        result = self.collection.delete_one({"_id": contract_id})
         if result.deleted_count == 0:
-            return {"error": "Legal advice could not be deleted."}
-        return {"success": "Legal advice deleted successfully."}
+            return {"error": "Contract could not be deleted."}
+        return {"success": "Contract deleted successfully."}
+
+

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+```python
+=======
 
+>>>>>>> ac62b9b (Initial commit)
 import datetime
 from pymongo import MongoClient
 

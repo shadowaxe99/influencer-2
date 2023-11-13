@@ -1,7 +1,20 @@
+<<<<<<< HEAD
+```python
+=======
+>>>>>>> ac62b9b (Initial commit)
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+<<<<<<< HEAD
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+import random
+
+class ContentManagementAgent:
+    def __init__(self):
+=======
 
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -15,11 +28,14 @@ class ContentManagementAgent:
         """
         Initializes a new instance of the ContentManagementAgent class.
         """
+>>>>>>> ac62b9b (Initial commit)
         self.contentIdeas = []
         self.stop_words = set(stopwords.words('english'))
         self.lemmatizer = WordNetLemmatizer()
 
     def preprocess_text(self, text):
+<<<<<<< HEAD
+=======
         """
         Prepares text data for content idea generation by tokenizing and lemmatizing.
 
@@ -127,11 +143,14 @@ class ContentManagementAgent:
         :param text: The text to preprocess.
         :return: A list of preprocessed tokens.
         """
+>>>>>>> ac62b9b (Initial commit)
         word_tokens = word_tokenize(text)
         lemmatized_tokens = [self.lemmatizer.lemmatize(w) for w in word_tokens if not w in self.stop_words]
         return lemmatized_tokens
 
     def generate_content_ideas(self, userProfile, brandCollaborations):
+<<<<<<< HEAD
+=======
         """
         Generates content ideas based on user profiles and brand collaborations.
 
@@ -153,11 +172,26 @@ class ContentManagementAgent:
         Returns:
             list: A list of content ideas generated for the influencer.
         """
+>>>>>>> ac62b9b (Initial commit)
         for collab in brandCollaborations:
             idea = f"How about a post featuring the {collab['product']} from {collab['brand']}?"
             self.contentIdeas.append(idea)
         return self.contentIdeas
 
+<<<<<<< HEAD
+    def optimize_captions(self, captions):
+        vectorizer = TfidfVectorizer().fit_transform(captions)
+        vectors = vectorizer.toarray()
+        csim = cosine_similarity(vectors)
+        optimized_captions = []
+        for index, caption in enumerate(captions):
+            if csim[index].mean() < 0.5:
+                optimized_captions.append(caption)
+        return optimized_captions
+
+contentManagementAgent = ContentManagementAgent()
+```
+=======
         """
         Generates a list of content ideas for influencers based on their user profile and active brand collaborations. The ideas are tailored to the influencer's niche, audience, and the brands they are collaborating with.
 
@@ -259,3 +293,4 @@ class ContentManagementAgent:
             idea = f"How about a post featuring the {collab['product']} from {collab['brand']}?"
             self.contentIdeas.append(idea)
         return self.contentIdeas
+>>>>>>> ac62b9b (Initial commit)
