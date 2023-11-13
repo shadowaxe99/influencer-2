@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Michael Gruen - Gen Z Entrepreneur</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Michael Gruen</h1>
+      <h2>Gen Z Entrepreneur</h2>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2>About</h2>
+      <p>Insert your bio and information about your entrepreneurial journey here.</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2>Projects</h2>
+      <p>Highlight your notable projects and achievements here.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>Include your contact information and a contact form here.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2022 Michael Gruen. All rights reserved.</p>
+  </footer>
+</body>
+</html>
