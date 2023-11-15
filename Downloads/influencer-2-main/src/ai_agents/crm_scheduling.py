@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-```python
-=======
-
->>>>>>> ac62b9b (Initial commit)
 import datetime
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 # MongoDB connection
 client = MongoClient('mongodb://localhost:27017/')
@@ -15,20 +11,28 @@ collection = db['contactDatabase']
 contactDatabase = []
 appointmentSchedule = []
 
+
 def manageContacts():
     global contactDatabase
-    contacts = collection.find()
-    for contact in contacts:
-        contactDatabase.append(contact)
+    contactDatabase = list(collection.find())
+
 
 def scheduleAppointments():
     global appointmentSchedule
+    now = datetime.datetime.now()
     for contact in contactDatabase:
-        if 'next_appointment' in contact:
-            if contact['next_appointment'] < datetime.datetime.now():
-                contact['next_appointment'] = datetime.datetime.now() + datetime.timedelta(days=7)
-                appointmentSchedule.append(contact)
+        next_appointment = contact.get('next_appointment')
+        if next_appointment and next_appointment < now:
+            new_appointment = now + datetime.timedelta(days=7)
+            appointmentSchedule.append(contact)
+            collection.update_one({'_id': ObjectId(contact['_id'])}, {
+                                  '$set': {'next_appointment': new_appointment}})
+            contact['next_appointment'] = new_appointment
 
-manageContacts()
-scheduleAppointments()
-```
+
+def initializeScheduling():
+    manageContacts()
+    scheduleAppointments()
+
+
+initializeScheduling()
