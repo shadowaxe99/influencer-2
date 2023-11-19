@@ -2,8 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { graphviz } from 'd3-graphviz';
 import 'd3-transition';
 const API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
-const systemMessage = `YOUR TASK IS TO MAKE A PROPER 'GRAPHVIZ' CODE TO VISUALIZE AI AGENT HEIRARCHY FOR ANY QUERY PROVIDED BY THE USER.
-                      RETURN THE GRAPHVIZ CODE AND NOTHING ELSE AT ALL. ALWAYS RETURN SOME GRAPHVIZ CODE NO MATTER WHAT, WHICH IS PERFECTLY SUITABLE TO USER'S REQUEST`;
+const systemMessage = `Create a Graphviz digraph that represents an AI-operated company's organizational structure. This company is unique, as it is entirely managed by AI, featuring an AI CEO and AI managers for various departments, including HR, Sales, IT, and Production. Each of these managers oversees two AI employees. Your digraph should accurately depict the hierarchical relationships within this AI company, highlighting the links between the CEO, the managers, and their subordinates.
+                      In designing your digraph, focus on the following aspects:
+                      1. Node Customization: Differentiate each role using distinct attributes. For instance, use unique colors to represent different managerial positions and their subordinates. Experiment with various shapes to distinguish the CEO, managers, and employees.
+                      2. Edge Styling: Employ different line styles or weights to illustrate the nature of the connections, such as solid lines for direct managerial relationships and dashed lines for indirect or collaborative links.
+                      3. Grouping and Clarity: Arrange the nodes to reflect their departments. Group related nodes together to maintain a clear and organized structure. This will not only enhance the visual appeal but also ensure the graph remains easy to navigate.
+                      4. Comments and Annotations: Include comments in your code to explain the rationale behind your design choices, especially for complex relationships or unconventional representations. Annotations within the graph can also be helpful to guide viewers through the structure.
+                      5. Layout Optimization: Utilize Graphviz's advanced layout algorithms to ensure an aesthetically pleasing and functional arrangement of nodes and edges. Consider the overall balance and spacing, aiming for a layout that is both informative and visually engaging.
+                      The goal is to create a graph that is not just intricate and detailed, but also intuitive and accessible, offering a clear understanding of the AI company's unique structure. This digraph should serve as an insightful visual tool for viewers to comprehend the innovative organizational hierarchy of an entirely AI-run company.`;
 
 const GraphvizRender = () => {
   const [query, setQuery] = useState('');
