@@ -1,0 +1,10 @@
+#hologram{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    max-width: 500px;
+    max-height: 500px;
+    z-index: 1000;
+}
