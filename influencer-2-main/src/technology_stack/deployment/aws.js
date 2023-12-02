@@ -1,61 +1,18 @@
 const AWS = require('aws-sdk');
-<<<<<<< HEAD
 const fs = require('fs');
 
+// Configure AWS
 AWS.config.update({
   region: 'us-west-2',
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
-const s3 = new AWS.S3();
-
-const uploadFile = (fileName) => {
-  const fileContent = fs.readFileSync(fileName);
-
-  const params = {
-    Bucket: process.env.AWS_BUCKET_NAME,
-    Key: fileName,
-    Body: fileContent
-  };
-
-  s3.upload(params, function(err, data) {
-    if (err) {
-      throw err;
-    }
-    console.log(`File uploaded successfully. ${data.Location}`);
-  });
-};
-
-const downloadFile = (fileName) => {
-  const params = {
-    Bucket: process.env.AWS_BUCKET_NAME,
-    Key: fileName
-  };
-
-  s3.getObject(params, function(err, data) {
-    if (err) console.error(err);
-    fs.writeFileSync(fileName, data.Body.toString());
-    console.log(`${fileName} has been downloaded successfully.`);
-  });
-};
-
-module.exports = {
-  uploadFile,
-  downloadFile
-=======
-
-// Configure AWS
-AWS.config.update({
-  region: 'us-east-1',
-  // other configuration parameters
-});
-
 // S3 instance
 const s3 = new AWS.S3();
 
 // Function to upload a file to S3
-function uploadFile(bucketName, key, fileContent) {
+const uploadFile = (bucketName, key, fileContent) => {
   const params = {
     Bucket: bucketName,
     Key: key,
@@ -65,7 +22,7 @@ function uploadFile(bucketName, key, fileContent) {
 }
 
 // Function to download a file from S3
-function downloadFile(bucketName, key) {
+const downloadFile = (bucketName, key) => {
   const params = {
     Bucket: bucketName,
     Key: key
@@ -74,7 +31,7 @@ function downloadFile(bucketName, key) {
 }
 
 // Function to delete a file from S3
-function deleteFile(bucketName, key) {
+const deleteFile = (bucketName, key) => {
   const params = {
     Bucket: bucketName,
     Key: key
@@ -83,7 +40,7 @@ function deleteFile(bucketName, key) {
 }
 
 // Function to list files in a bucket
-function listFiles(bucketName) {
+const listFiles = (bucketName) => {
   const params = {
     Bucket: bucketName
   };
@@ -95,5 +52,23 @@ module.exports = {
   downloadFile,
   deleteFile,
   listFiles
->>>>>>> ac62b9b (Initial commit)
 };
+
+// Example usage of uploadFile within the POST /api/profile endpoint
+app.post('/api/profile', (req, res) => {
+  const { image, ...profileData } = req.body;
+  const newUserProfile = new UserProfile(profileData);
+  newUserProfile.save()
+    .then(profile => {
+      // Assuming 'image' contains the file content and 'imageName' is the name of the file
+      const imageName = `${profile._id}_profile_image`;
+      uploadFile(process.env.AWS_BUCKET_NAME, imageName, image)
+        .then(uploadResponse => {
+          profile.imageURL = uploadResponse.Location;
+          profile.save();
+          res.json(profile);
+        })
+        .catch(uploadError => res.status(500).json({ error: uploadError.message }));
+    })
+    .catch(err => res.status(500).json({ error: err.message }));
+});
