@@ -37,7 +37,7 @@
         "@svgdotjs/svg.js": "^3.2.0",
         "@vercel/analytics": "^1.1.1",
         "@vercel/og": "^0.0.21",
-        "axios": "^1.5.1",
+        "axios": "^1.6.0",
         "chart.js": "^4.4.0",
         "class-variance-authority": "^0.7.0",
         "d3-graphviz": "^5.1.0",
