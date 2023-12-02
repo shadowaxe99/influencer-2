@@ -1,22 +1,36 @@
 const express = require('express');
-<<<<<<< HEAD
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 
-// Importing Schemas
-const UserProfile = require('./database/UserProfileSchema');
-const BrandCollaboration = require('./database/BrandCollaborationSchema');
-const ContentIdea = require('./database/ContentIdeaSchema');
-const PressRelease = require('./database/PressReleaseSchema');
-const LegalAdvice = require('./database/LegalAdviceSchema');
-const Contact = require('./database/ContactSchema');
-const Appointment = require('./database/AppointmentSchema');
-const StrategyInsight = require('./database/StrategyInsightSchema');
-const PostPerformance = require('./database/PostPerformanceSchema');
-const ApiIntegration = require('./database/ApiIntegrationSchema');
+// Define Mongoose schemas based on the provided data schemas
+const UserProfileSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  occupation: String,
+  // ... other fields as per shared_dependencies
+});
+const UserProfile = mongoose.model('UserProfile', UserProfileSchema);
 
+const BrandCollaborationSchema = new mongoose.Schema({
+  brand: String,
+  deal: String,
+  // ... other fields as per shared_dependencies
+});
+const BrandCollaboration = mongoose.model('BrandCollaboration', BrandCollaborationSchema);
+
+// ... define other schemas and models
+
+// Export the models
+module.exports = {
+  UserProfile,
+  BrandCollaboration,
+  // ... export other models
+};
+
+app.use(cors());
 app.use(bodyParser.json());
 
 mongoose.connect('mongodb://localhost:27017/influencerDB', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -25,60 +39,26 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Influencer AI Agent System');
 });
 
-// Routes for each feature
-app.use('/profile', UserProfile);
-app.use('/brandCollaboration', BrandCollaboration);
-app.use('/contentIdea', ContentIdea);
-app.use('/pressRelease', PressRelease);
-app.use('/legalAdvice', LegalAdvice);
-app.use('/contact', Contact);
-app.use('/appointment', Appointment);
-app.use('/strategyInsight', StrategyInsight);
-app.use('/postPerformance', PostPerformance);
-app.use('/apiIntegration', ApiIntegration);
-
-const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`Server running on port ${port}`));
-=======
-const app = express();
-const bodyParser = require('body-parser');
-const cors = require('cors');
-
-// Import models
-const { UserProfile, BrandCollaboration, ContentIdea, PressRelease, LegalAdvice, Contact, Appointment, StrategyInsight, PostPerformance } = require('./database/mongodb');
-
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
-
-// Define routes
+// Example CRUD operations for UserProfile
 app.get('/api/profile', (req, res) => {
-  // Handle profile retrieval
   UserProfile.find()
     .then(profile => res.json(profile))
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
+// ... POST, PUT, DELETE operations for UserProfile
+
+// CRUD operations for BrandCollaboration
 app.get('/api/collaborations', (req, res) => {
-  // Handle collaborations retrieval
   BrandCollaboration.find()
     .then(collaborations => res.json(collaborations))
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
-app.get('/api/content-ideas', (req, res) => {
-  // Handle content ideas retrieval
-  ContentIdea.find()
-    .then(ideas => res.json(ideas))
-    .catch(err => res.status(500).json({ error: err.message }));
-});
+// ... POST, PUT, DELETE operations for BrandCollaboration
 
-// ... define other routes
+// ... CRUD operations for other models
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
->>>>>>> ac62b9b (Initial commit)
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
