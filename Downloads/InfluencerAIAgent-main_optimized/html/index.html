@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Influencer Talent Manager AI</title>
+    <!-- React and Babel Scripts -->
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    
+    <!-- Custom Styling -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #121212; /* Dark background */
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .icon-button {
+            background: linear-gradient(45deg, #06b6d4, #3b82f6);
+            padding: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+            color: #fff;
+        }
+        /* Responsive Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        /* Additional Styling as needed */
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <!-- React Component Script -->
+    <script type="text/babel">
+        function Dashboard() {
+            // Dashboard component code
+            return (
+                <div className="p-8">
+                    {/* Top bar, Main content, and other components */}
+                    <div className="grid">
+                        {/* Add components here */}
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<Dashboard />, document.getElementById('app'));
+    </script>
+</body>
+</html>

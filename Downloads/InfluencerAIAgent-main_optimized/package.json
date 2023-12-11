@@ -1,0 +1,27 @@
+{
+  "name": "influencer-2-main",
+  "version": "1.0.0",
+  "description": "This is the repository for the Influencer Marketing AI Agent project.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.14.0",
+    "axios": "^1.6.2",
+    "brain.js": "^2.0.0-beta.23",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1"
+  }
+}
